@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info:toolkitInfoModel xmlns:common="http://www.ibm.com/xmlns/prod/streams/spl/common" 
+                       xmlns:info="http://www.ibm.com/xmlns/prod/streams/spl/toolkitInfo">
+  <info:identity>
+    <info:name>com.teracloud.streamsx.stt</info:name>
+    <info:description>
+This toolkit provides integration with the WeNet speech recognition framework,
+enabling real-time streaming speech-to-text capabilities for TeraCloud Streams applications.
+    </info:description>
+    <info:version>1.0.0</info:version>
+    <info:requiredProductVersion>7.2.0</info:requiredProductVersion>
+  </info:identity>
+  <info:dependencies/>
+</info:toolkitInfoModel>

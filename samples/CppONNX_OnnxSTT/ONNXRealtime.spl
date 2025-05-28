@@ -1,0 +1,74 @@
+use streamsx.stt::*;
+
+/**
+ * Real-time speech recognition using the ONNX-based C++ operator
+ * 
+ * This demonstrates the OnnxSTT operator which provides:
+ * - C++ performance (low latency)
+ * - ONNX portability (no WeNet C API dependency)
+ * - Easy model updates (just replace ONNX file)
+ */
+composite ONNXRealtime {
+    param
+        expression<rstring> $modelDir : "../../models/sherpa-onnx-streaming-zipformer-bilingual-zh-en-2023-02-20";
+        
+    graph
+        // Audio source - reads real audio files from test data
+        stream<blob audioChunk, uint64 audioTimestamp> AudioStream = FileAudioSource() {
+            param
+                filename: "../../test_data/audio/librispeech-1995-1837-0001.raw";
+                blockSize: 3200u;  // 100ms of 16kHz 16-bit mono audio
+                sampleRate: 16000;
+                bitsPerSample: 16;
+                channelCount: 1;
+        }
+        
+        // ONNX-based speech recognition
+        stream<rstring text, boolean isFinal, float64 confidence> 
+            Transcription = OnnxSTT(AudioStream) {
+            param
+                encoderModel: "../../models/sherpa_onnx_paraformer/sherpa-onnx-streaming-zipformer-bilingual-zh-en-2023-02-20/encoder-epoch-99-avg-1.onnx";
+                vocabFile: "../../models/sherpa_onnx_paraformer/sherpa-onnx-streaming-zipformer-bilingual-zh-en-2023-02-20/tokens.txt"; 
+                cmvnFile: "models/global_cmvn.stats";
+                sampleRate: 16000;
+                chunkSizeMs: 100;
+                provider: "CPU";
+                numThreads: 4;
+        }
+        
+        // Display results with performance info
+        () as ResultDisplay = Custom(Transcription) {
+            logic
+                state: {
+                    mutable uint64 resultCount = 0ul;
+                    mutable uint64 totalLatency = 0ul;
+                    mutable uint64 minLatency = 999999ul;
+                    mutable uint64 maxLatency = 0ul;
+                }
+                
+                onTuple Transcription: {
+                    // Display transcription
+                    printStringLn(text + 
+                                 (isFinal ? " (FINAL)" : " ...") +
+                                 " [conf: " + (rstring)(confidence * 100.0) + "%]");
+                    
+                    // Update statistics
+                    resultCount++;
+                    
+                    // Show performance summary every 10 results
+                    if (resultCount % 10ul == 0ul) {
+                        printStringLn("\n=== ONNX C++ Performance ===");
+                        printStringLn("Results: " + (rstring)resultCount);
+                        printStringLn("Successfully processing audio\n");
+                    }
+                }
+        }
+        
+        // Also write to file for analysis
+        () as FileWriter = FileSink(Transcription) {
+            param
+                file: "onnx_transcription_results.csv";
+                format: csv;
+                quoteStrings: true;
+        }
+}

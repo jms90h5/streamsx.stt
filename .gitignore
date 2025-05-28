@@ -1,0 +1,24 @@
+# Build artifacts
+impl/build/
+impl/lib/
+toolkit.xml
+
+# Sample build outputs
+samples/*/output/
+samples/*/*.sab
+samples/*/*.adl
+
+# Temporary files
+*.log
+*.tmp
+*~
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# System files
+.DS_Store
+Thumbs.db
