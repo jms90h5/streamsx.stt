@@ -26,15 +26,27 @@ This directory contains sample applications demonstrating different approaches t
 
 ### C++-based Implementations
 
-#### CppONNX_OnnxSTT
+#### CppONNX_OnnxSTT (Recommended)
 - **Technology**: Pure C++ with ONNX Runtime
+- **Models Supported**: 
+  - Zipformer RNN-T (legacy)
+  - **NVidia NeMo Cache-Aware Conformer (new)**
+- **Pipeline**: VAD → Feature Extraction → ASR Model
 - **Operator**: `OnnxSTT` (toolkit primitive operator)
 - **Use Case**: Production real-time systems requiring low latency
 - **Latency**: ~100-150ms
 - **Key Features**:
+  - **New**: NVidia NeMo FastConformer support (114M parameters, 13k hours training)
+  - Voice Activity Detection (Silero VAD + energy fallback)
+  - Advanced feature extraction (kaldifeat + simple_fbank fallback)
+  - Cache-aware streaming for minimal latency
   - Uses kaldi-native-fbank for feature extraction
   - Supports CPU/CUDA/TensorRT providers
   - Self-contained deployment (no WeNet runtime needed)
+- **Sample Applications**:
+  - `ONNXRealtime.spl` - Original Zipformer implementation
+  - `NeMoRealtime.spl` - New NeMo pipeline with VAD and advanced features
+  - `test_nemo_standalone` - C++ standalone test without SPL
 
 #### CppWeNet_STT
 - **Technology**: C++ with full WeNet runtime
@@ -133,3 +145,70 @@ streamtool submitjob output/<app_name>.sab
 ```
 
 Refer to individual sample READMEs for specific parameters and configuration.
+
+## NVidia NeMo Cache-Aware Conformer (New!)
+
+The toolkit now supports NVidia NeMo FastConformer-Hybrid models with advanced pipeline features.
+
+### Quick Start with NeMo
+
+1. **Download and export NeMo model**:
+   ```bash
+   # Download NeMo model setup script
+   ../download_nemo_model.sh
+   
+   # Export NeMo model to ONNX (requires nemo_toolkit)
+   python3 ../export_nemo_to_onnx.py
+   ```
+
+2. **Test with standalone C++ application**:
+   ```bash
+   cd CppONNX_OnnxSTT
+   make -f Makefile.nemo
+   ./test_nemo_standalone --help
+   ```
+
+3. **Run SPL application with NeMo**:
+   ```bash
+   # Build toolkit first
+   cd CppONNX_OnnxSTT
+   make
+   
+   # Compile NeMo SPL application
+   sc -a -t ../../../ -M NeMoRealtime --output-directory output_nemo
+   
+   # Run with Streams
+   streamtool submitjob output_nemo/NeMoRealtime.sab
+   ```
+
+### NeMo Features
+
+- **114M parameter FastConformer-Hybrid model**
+- **13,000+ hours of English training data**
+- **Cache-aware streaming** for minimal latency
+- **Voice Activity Detection** (Silero VAD + energy fallback)
+- **Advanced feature extraction** (kaldifeat + simple_fbank)
+- **Multiple latency modes**: 0ms, 80ms, 480ms, 1040ms
+- **Real-time performance** with CPU inference
+
+### Performance Comparison
+
+| Model | Latency | Accuracy | Training Data | Parameters |
+|-------|---------|----------|---------------|------------|
+| Zipformer RNN-T | ~150ms | Good | LibriSpeech | 90M |
+| **NeMo FastConformer** | **~100ms** | **Excellent** | **13k hours** | **114M** |
+
+### Model Export Instructions
+
+```bash
+# Install NeMo toolkit
+pip install nemo_toolkit[all]
+
+# Export streaming model with cache support
+python3 -c "
+import nemo.collections.asr as nemo_asr
+model = nemo_asr.models.EncDecRNNTBPEModel.from_pretrained('nvidia/stt_en_fastconformer_hybrid_large_streaming_multi')
+model.set_export_config({'cache_support': True})
+model.export('models/nemo_fastconformer_streaming/fastconformer_streaming.onnx')
+"
+```

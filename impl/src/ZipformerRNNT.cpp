@@ -154,7 +154,7 @@ std::vector<float> ZipformerRNNT::runEncoder(const std::vector<float>& features)
 }
 
 std::vector<float> ZipformerRNNT::runDecoder(const std::vector<int>& tokens,
-                                            const std::vector<float>& state) {
+                                            const std::vector<float>& /* state */) {
     // Decoder expects shape [batch, 2] where second dimension is:
     // [0] = current token
     // [1] = context (usually 0 for RNN-T)
@@ -282,7 +282,9 @@ void ZipformerRNNT::beamSearchStep(const std::vector<float>& encoder_out) {
         token_scores.resize(k);
         
         // Create new hypotheses
-        for (const auto& [score, token_id] : token_scores) {
+        for (const auto& score_token : token_scores) {
+            float score = score_token.first;
+            int token_id = score_token.second;
             Hypothesis new_hyp = hyp;
             
             if (token_id != blank_id_) {
@@ -294,7 +296,7 @@ void ZipformerRNNT::beamSearchStep(const std::vector<float>& encoder_out) {
             new_hyp.decoder_state = decoder_out;  // Update decoder state
             
             candidates.push(new_hyp);
-            if (candidates.size() > config_.beam_size * 2) {
+            if (candidates.size() > static_cast<size_t>(config_.beam_size * 2)) {
                 candidates.pop();  // Keep only top candidates
             }
         }
@@ -302,7 +304,7 @@ void ZipformerRNNT::beamSearchStep(const std::vector<float>& encoder_out) {
     
     // Select top beam_size hypotheses
     hypotheses_.clear();
-    while (!candidates.empty() && hypotheses_.size() < config_.beam_size) {
+    while (!candidates.empty() && hypotheses_.size() < static_cast<size_t>(config_.beam_size)) {
         hypotheses_.push_back(candidates.top());
         candidates.pop();
     }
@@ -315,7 +317,7 @@ std::string ZipformerRNNT::tokensToText(const std::vector<int>& tokens) {
     std::string text;
     
     for (int token_id : tokens) {
-        if (token_id >= 0 && token_id < tokens_.size()) {
+        if (token_id >= 0 && token_id < static_cast<int>(tokens_.size())) {
             const std::string& token = tokens_[token_id];
             
             // Handle BPE tokens (e.g., "▁" for word boundaries)

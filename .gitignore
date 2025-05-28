@@ -22,3 +22,11 @@ samples/*/*.adl
 # System files
 .DS_Store
 Thumbs.db
+
+# Large model files (download separately)
+models/**/*.onnx
+models/**/*.model
+models/**/*.vocab
+
+# VAD models (download separately)
+models/silero_vad/

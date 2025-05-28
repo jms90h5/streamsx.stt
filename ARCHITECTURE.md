@@ -2,11 +2,11 @@
 
 ## Overview
 
-This document provides technical details about the TeraCloud Streams Speech-to-Text toolkit implementation, design decisions, and historical context.
+This document provides technical details about the TeraCloud Streams Speech-to-Text toolkit implementation, design decisions, and historical context. As of 2025-05-28, the toolkit features a completely redesigned three-stage pipeline with VAD, advanced feature extraction, and model abstraction interfaces.
 
 ## System Architecture
 
-### Component Layers
+### New Pipeline Architecture (2025-05-28)
 
 ```
 ┌─────────────────────────────────────┐
@@ -20,24 +20,192 @@ This document provides technical details about the TeraCloud Streams Speech-to-T
 └─────────────────┬───────────────────┘
                   │
 ┌─────────────────▼───────────────────┐
-│     C++ Wrapper Layer               │  ← SPL/C++ bridge
-│   (OnnxSTTWrapper)                 │
+│     STTPipeline Layer               │  ← Modern pipeline
+│   ┌─────────────────────────────────┐ │
+│   │ 1. VAD Stage                    │ │
+│   │   ├─ SileroVAD (ONNX)          │ │
+│   │   └─ EnergyVAD (fallback)      │ │
+│   └─────────────────────────────────┘ │
+│   ┌─────────────────────────────────┐ │
+│   │ 2. Feature Extraction Stage     │ │
+│   │   ├─ KaldifeatExtractor        │ │
+│   │   └─ SimpleFbank (fallback)    │ │
+│   └─────────────────────────────────┘ │
+│   ┌─────────────────────────────────┐ │
+│   │ 3. ASR Model Stage              │ │
+│   │   ├─ ZipformerRNNT (impl)      │ │
+│   │   ├─ ConformerModel (intf)     │ │
+│   │   ├─ WenetModel (intf)         │ │
+│   │   └─ SpeechBrainModel (intf)   │ │
+│   └─────────────────────────────────┘ │
 └─────────────────┬───────────────────┘
                   │
 ┌─────────────────▼───────────────────┐
-│     Implementation Layer            │  ← Business logic
-│   (OnnxSTTImpl)                    │
-└─────────────────┬───────────────────┘
-                  │
-┌─────────────────▼───────────────────┐
-│     ASR Engine Layer                │  ← Core algorithm
-│   (ZipformerRNNT)                  │
+│     Cache Management Layer          │  ← Tensor orchestration
+│   (CacheManager - multi-arch)      │
 └─────────────────┬───────────────────┘
                   │
 ┌─────────────────▼───────────────────┐
 │     Inference Layer                 │  ← ONNX Runtime
 │   (libonnxruntime.so)              │
 └─────────────────────────────────────┘
+```
+
+### Legacy Architecture (deprecated)
+
+The previous architecture used a direct OnnxSTTImpl → ZipformerRNNT approach without VAD or proper feature extraction. This has been superseded by the modular pipeline design.
+
+## Modern Pipeline Components (2025-05-28)
+
+### 1. Voice Activity Detection (VAD) Stage
+
+#### SileroVAD Implementation
+```cpp
+class SileroVAD : public VADInterface {
+    // ONNX-based neural VAD with 64ms processing windows
+    // Provides high accuracy speech/non-speech classification
+    // Falls back to energy-based VAD if model unavailable
+};
+```
+
+**Key Features:**
+- **64ms processing windows** with configurable overlap
+- **Adaptive thresholds** (default 0.5) for speech detection
+- **Performance tracking** with timing metrics
+- **Automatic fallback** to energy-based VAD
+- **State persistence** across audio chunks
+
+**Configuration:**
+```cpp
+VADInterface::Config vad_config;
+vad_config.sample_rate = 16000;
+vad_config.window_size_ms = 64;
+vad_config.speech_threshold = 0.5f;
+```
+
+#### Energy-based VAD Fallback
+Simple energy thresholding when Silero VAD model unavailable:
+- RMS energy calculation with smoothing
+- Configurable energy threshold
+- Minimal processing overhead
+
+### 2. Feature Extraction Stage
+
+#### KaldifeatExtractor Implementation
+```cpp
+class KaldifeatExtractor : public FeatureExtractorInterface {
+    // Production-quality feature extraction with kaldifeat C++17
+    // Falls back to simple_fbank for compatibility
+};
+```
+
+**Key Features:**
+- **Kaldifeat C++17 integration** for production features
+- **Simple filterbank fallback** for testing/compatibility
+- **80-dimensional log-mel features** (configurable)
+- **CMVN normalization support** (pending implementation)
+- **Configurable parameters**: sample rate, window size, mel bins
+
+**Configuration:**
+```cpp
+FeatureExtractorInterface::Config feat_config;
+feat_config.sample_rate = 16000;
+feat_config.num_mel_bins = 80;
+feat_config.frame_length_ms = 25;
+feat_config.frame_shift_ms = 10;
+feat_config.use_kaldifeat = true;  // Falls back to simple_fbank if unavailable
+```
+
+### 3. ASR Model Stage
+
+#### Model Abstraction Interface
+```cpp
+class ModelInterface {
+public:
+    struct TranscriptionResult {
+        std::string text;
+        float confidence;
+        uint64_t timestamp_ms;
+        bool is_final;
+        int processing_time_ms;
+    };
+    
+    virtual bool initialize(const ModelConfig& config) = 0;
+    virtual TranscriptionResult processChunk(const std::vector<std::vector<float>>& features, 
+                                           uint64_t timestamp_ms) = 0;
+    virtual void reset() = 0;
+    virtual std::map<std::string, double> getStats() = 0;
+    virtual bool supportsStreaming() const = 0;
+    virtual int getFeatureDim() const = 0;
+    virtual int getChunkFrames() const = 0;
+};
+```
+
+#### Supported Model Architectures
+1. **ZipformerRNNT** (fully implemented)
+2. **ConformerModel** (interface ready)
+3. **WenetModel** (interface ready) 
+4. **SpeechBrainModel** (interface ready)
+
+### 4. Cache Management Layer
+
+#### Multi-Architecture Cache Support
+```cpp
+class CacheManager {
+public:
+    enum CacheType {
+        ZIPFORMER_35_CACHE,      // 35 cache tensors (7 types × 5 layers)
+        CONFORMER_3_CACHE,       // encoder_out_cache, cnn_cache, att_cache
+        WENET_SINGLE_CACHE,      // Single "cache" tensor
+        SPEECHBRAIN_H0_CACHE,    // LSTM hidden states (h0, c0)
+        CUSTOM_CACHE             // User-defined cache architecture
+    };
+};
+```
+
+**Features:**
+- **Multi-architecture support** for different streaming ASR models
+- **Configurable cache sizes** and tensor shapes
+- **Automatic cache initialization** and reset
+- **Performance tracking** with cache hit rates
+- **Memory-efficient management** with reuse patterns
+
+### 5. Integrated STTPipeline
+
+#### Pipeline Orchestration
+```cpp
+class STTPipeline {
+public:
+    struct PipelineResult {
+        std::string transcription;
+        float confidence;
+        uint64_t timestamp_ms;
+        bool is_speech;          // VAD result
+        bool is_final;           // Final transcription
+        
+        // Performance metrics
+        int vad_time_ms;
+        int feature_time_ms;
+        int model_time_ms;
+        int total_time_ms;
+    };
+    
+    PipelineResult processAudio(const std::vector<float>& audio, uint64_t timestamp_ms);
+};
+```
+
+**Pipeline Flow:**
+1. **VAD Processing**: Filter non-speech audio to reduce computation
+2. **Feature Extraction**: Convert audio to 80-dim log-mel features
+3. **Model Inference**: Process features through ASR model
+4. **Result Integration**: Combine results with timing and confidence
+
+**Factory Functions:**
+```cpp
+// Create preconfigured pipelines for different models
+std::unique_ptr<STTPipeline> createZipformerPipeline(const std::string& model_dir, bool enable_vad = true);
+std::unique_ptr<STTPipeline> createConformerPipeline(const std::string& model_dir, bool enable_vad = true);
+std::unique_ptr<STTPipeline> createWenetPipeline(const std::string& model_dir, bool enable_vad = true);
 ```
 
 ## Zipformer RNN-T Implementation

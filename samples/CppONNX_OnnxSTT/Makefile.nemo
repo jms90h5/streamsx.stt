@@ -1,0 +1,105 @@
+# Makefile for NeMo standalone test application
+# This builds a C++ application that tests the NeMo pipeline directly
+
+# Compiler settings
+CXX := g++
+CXXFLAGS := -O3 -std=c++14 -Wall -Wextra
+
+# Paths
+TOOLKIT_ROOT := ../..
+IMPL_DIR := $(TOOLKIT_ROOT)/impl
+STT_LIB := $(IMPL_DIR)/lib/libs2t_impl.so
+
+# Check for ONNX Runtime
+ONNX_LOCAL := $(TOOLKIT_ROOT)/deps/onnxruntime
+ifneq ($(wildcard $(ONNX_LOCAL)/lib/libonnxruntime.so),)
+    ONNXRUNTIME_ROOT := $(ONNX_LOCAL)
+else
+    ifneq ($(wildcard /usr/local/lib/libonnxruntime.so),)
+        ONNXRUNTIME_ROOT := /usr/local
+    else ifneq ($(wildcard /usr/lib/libonnxruntime.so),)
+        ONNXRUNTIME_ROOT := /usr
+    else
+        $(error ONNX Runtime not found. Run ../../setup_onnx_runtime.sh first)
+    endif
+endif
+
+# Include and library paths
+CXXFLAGS += -I$(IMPL_DIR)/include
+CXXFLAGS += -I$(ONNXRUNTIME_ROOT)/include
+
+LDFLAGS += -L$(IMPL_DIR)/lib
+LDFLAGS += -L$(ONNXRUNTIME_ROOT)/lib
+LDFLAGS += -ls2t_impl
+LDFLAGS += -lonnxruntime
+LDFLAGS += -ldl
+LDFLAGS += -Wl,-rpath,'$$ORIGIN/../../impl/lib'
+LDFLAGS += -Wl,-rpath,'$$ORIGIN/../../deps/onnxruntime/lib'
+LDFLAGS += -Wl,-rpath,$(ONNXRUNTIME_ROOT)/lib
+
+# Target
+TARGET := test_nemo_standalone
+SOURCE := test_nemo_standalone.cpp
+
+.PHONY: all clean test help
+
+all: $(TARGET)
+
+$(TARGET): $(SOURCE) $(STT_LIB)
+	@echo "Building NeMo standalone test..."
+	$(CXX) $(CXXFLAGS) -o $@ $< $(LDFLAGS)
+	@echo "Build complete: $(TARGET)"
+
+$(STT_LIB):
+	@echo "Building STT implementation library..."
+	$(MAKE) -C $(IMPL_DIR)
+
+clean:
+	rm -f $(TARGET)
+
+test: $(TARGET)
+	@echo "Running NeMo standalone test..."
+	@echo "Note: Requires NeMo ONNX model and test audio file"
+	./$(TARGET) --help
+
+# Download test data if needed
+test-data:
+	@echo "Checking test data..."
+	@if [ ! -f "../../test_data/audio/librispeech-1995-1837-0001.raw" ]; then \
+		echo "Test audio file not found. Please ensure test data is available."; \
+	else \
+		echo "Test data available"; \
+	fi
+
+# Check for NeMo model
+nemo-model:
+	@echo "Checking NeMo model..."
+	@if [ ! -f "../../models/nemo_fastconformer_streaming/fastconformer_streaming.onnx" ]; then \
+		echo "NeMo model not found. Run ../../download_nemo_model.sh"; \
+		echo "Then export a NeMo model using ../../export_nemo_to_onnx.py"; \
+	else \
+		echo "NeMo model available"; \
+	fi
+
+# Full test with model and data checks
+full-test: test-data nemo-model $(TARGET)
+	@echo "Running full NeMo test..."
+	./$(TARGET) --verbose
+
+help:
+	@echo "NeMo Standalone Test Makefile"
+	@echo ""
+	@echo "Targets:"
+	@echo "  all        - Build the standalone test application"
+	@echo "  clean      - Remove built files"
+	@echo "  test       - Run the test (shows help)"
+	@echo "  test-data  - Check if test audio data is available"
+	@echo "  nemo-model - Check if NeMo ONNX model is available"
+	@echo "  full-test  - Run complete test with model and data"
+	@echo "  help       - Show this help"
+	@echo ""
+	@echo "Usage:"
+	@echo "  make all                    # Build"
+	@echo "  make full-test              # Complete test"
+	@echo "  ./test_nemo_standalone --help  # Usage info"
+	@echo ""

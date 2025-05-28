@@ -49,7 +49,7 @@ public:
             float energy = 0.0f;
             
             // Compute frame energy
-            for (int i = 0; i < frame_length_samples_ && start + i < audio.size(); ++i) {
+            for (int i = 0; i < frame_length_samples_ && start + i < static_cast<int>(audio.size()); ++i) {
                 float sample = audio[start + i] * window_[i];
                 energy += sample * sample;
             }

@@ -20,8 +20,8 @@ endif
 CXX := g++
 CXXFLAGS := -O3 -DNDEBUG
 
-# Source files - Only ONNX implementation
-SOURCES = src/OnnxSTTImpl.cpp src/OnnxSTTInterface.cpp src/ZipformerRNNT.cpp
+# Source files - ONNX implementation with VAD, feature extraction, cache management, pipeline, and NeMo model
+SOURCES = src/OnnxSTTImpl.cpp src/OnnxSTTInterface.cpp src/ZipformerRNNT.cpp src/SileroVAD.cpp src/KaldifeatExtractor.cpp src/CacheManager.cpp src/STTPipeline.cpp src/NeMoCacheAwareConformer.cpp src/ModelFactory.cpp
 
 # Build directory
 BUILD_DIR = build
