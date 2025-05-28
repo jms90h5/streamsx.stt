@@ -147,10 +147,35 @@ ModelInterface::TranscriptionResult NeMoCacheAwareConformer::processChunk(const 
         
         // Prepare input tensors
         
-        // 1. Audio signal tensor: [batch, time, features] = [1, chunk_frames, 80]
+        // 1. Audio signal tensor: [batch, time, features] = [1, time_frames, 80]
         size_t batch_size = 1;
         size_t feature_dim = features[0].size();
         size_t time_frames = features.size();
+        
+        // NeMo model expects exactly 160 input frames (40 after subsampling factor 4)
+        // This matches the hardcoded attention reshape {40,4,44}
+        size_t required_frames = 160;  // Fixed size for this specific model
+        
+        std::cout << "Processing chunk: " << time_frames << " frames";
+        if (time_frames != required_frames) {
+            std::cout << " (padding to " << required_frames << " for model compatibility)";
+        }
+        std::cout << std::endl;
+        
+        // Pad or truncate features to exactly 160 frames
+        std::vector<std::vector<float>> padded_features;
+        padded_features.reserve(required_frames);
+        
+        for (size_t i = 0; i < required_frames; ++i) {
+            if (i < time_frames) {
+                // Use original feature
+                padded_features.push_back(features[i]);
+            } else {
+                // Pad with zero vector
+                padded_features.push_back(std::vector<float>(feature_dim, 0.0f));
+            }
+        }
+        time_frames = required_frames;
         
         // Flatten features for ONNX (keep [time, features] format as [batch, time, features])
         std::vector<float> audio_signal_data;
@@ -158,7 +183,7 @@ ModelInterface::TranscriptionResult NeMoCacheAwareConformer::processChunk(const 
         
         for (size_t time = 0; time < time_frames; ++time) {
             for (size_t feat = 0; feat < feature_dim; ++feat) {
-                audio_signal_data.push_back(features[time][feat]);
+                audio_signal_data.push_back(padded_features[time][feat]);
             }
         }
         

@@ -314,7 +314,7 @@ std::unique_ptr<STTPipeline> createNeMoPipeline(const std::string& model_path, b
     // Model configuration for NeMo (single .onnx file)
     config.model_config.encoder_path = model_path;  // NeMo uses single model file
     config.model_config.model_type = ModelInterface::ModelConfig::NVIDIA_NEMO;
-    config.model_config.chunk_frames = 16;
+    config.model_config.chunk_frames = 160;  // 160 frames = 1.6 seconds, divisible by 4
     config.model_config.feature_dim = 80;
     config.model_config.num_threads = 4;
     

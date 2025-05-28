@@ -33,7 +33,7 @@ public:
         int num_threads = 4;
         int batch_size = 1;
         int feature_dim = 80;           // 80-dim log-mel features
-        int chunk_frames = 16;          // NeMo default chunk size
+        int chunk_frames = 160;         // Recommended: divisible by 4, gives 40 frames after subsampling
         int last_channel_cache_size = 64;  // Configurable cache size
         int last_time_cache_size = 64;
         int num_cache_layers = 12;      // Number of layers with caching
