@@ -1,0 +1,71 @@
+{
+  "text": " It was the first great sorrow of his life. It was not so much the loss of the cotton itself, but the fantasy, the hopes, the dreams built around it.",
+  "segments": [
+    {
+      "id": 0,
+      "seek": 0,
+      "start": 0.0,
+      "end": 5.28,
+      "text": " It was the first great sorrow of his life. It was not so much the loss of the cotton itself,",
+      "tokens": [
+        50363,
+        632,
+        373,
+        262,
+        717,
+        1049,
+        24140,
+        286,
+        465,
+        1204,
+        13,
+        632,
+        373,
+        407,
+        523,
+        881,
+        262,
+        2994,
+        286,
+        262,
+        15985,
+        2346,
+        11,
+        50627
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.15749357938766478,
+      "compression_ratio": 1.3577981651376148,
+      "no_speech_prob": 0.001800940022803843
+    },
+    {
+      "id": 1,
+      "seek": 0,
+      "start": 5.28,
+      "end": 8.88,
+      "text": " but the fantasy, the hopes, the dreams built around it.",
+      "tokens": [
+        50627,
+        475,
+        262,
+        8842,
+        11,
+        262,
+        7176,
+        11,
+        262,
+        10625,
+        3170,
+        1088,
+        340,
+        13,
+        50807
+      ],
+      "temperature": 0.0,
+      "avg_logprob": -0.15749357938766478,
+      "compression_ratio": 1.3577981651376148,
+      "no_speech_prob": 0.001800940022803843
+    }
+  ],
+  "language": "en"
+}
