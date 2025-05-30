@@ -1,5 +1,0 @@
-Whisper Segments for: librispeech
-============================================================
-
-[   0.0s -    5.3s] It was the first great sorrow of his life. It was not so much the loss of the cotton itself,
-[   5.3s -    8.9s] but the fantasy, the hopes, the dreams built around it.

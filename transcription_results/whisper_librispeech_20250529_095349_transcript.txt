@@ -1,7 +1,0 @@
-File: test_data/audio/librispeech-1995-1837-0001.wav
-Model: Whisper base.en
-Timestamp: 20250529_095349
-Duration: 8.73 seconds
-============================================================
-
-It was the first great sorrow of his life. It was not so much the loss of the cotton itself, but the fantasy, the hopes, the dreams built around it.

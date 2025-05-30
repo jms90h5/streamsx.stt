@@ -23,10 +23,18 @@ samples/*/*.adl
 .DS_Store
 Thumbs.db
 
-# Large model files (download separately)
+# Large model files (download separately - share via external storage)
 models/**/*.onnx
 models/**/*.model
 models/**/*.vocab
+models/**/*.nemo
+models/**/*.ckpt
+models/**/*.pt
+models/**/blobs/
+models/nemo_extracted/
+models/nemo_cache_aware_conformer/
+models/nemo_fastconformer_direct/
+models/sherpa_onnx_paraformer/
 
 # VAD models (download separately)
 models/silero_vad/
