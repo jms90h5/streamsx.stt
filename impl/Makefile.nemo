@@ -1,0 +1,46 @@
+# Makefile for NeMo STT implementation
+
+# Python configuration
+PYTHON_CONFIG := python3-config
+PYTHON_CFLAGS := $(shell $(PYTHON_CONFIG) --cflags)
+PYTHON_LDFLAGS := $(shell $(PYTHON_CONFIG) --ldflags --embed)
+
+# NumPy includes
+NUMPY_INCLUDE := $(shell python3 -c "import numpy; print(numpy.get_include())")
+
+# Compiler settings
+CXX := g++
+CXXFLAGS := -O3 -DNDEBUG -fPIC -std=c++14 -Wall -Wextra
+CXXFLAGS += -Iinclude
+CXXFLAGS += $(PYTHON_CFLAGS)
+CXXFLAGS += -I$(NUMPY_INCLUDE)
+
+# Source files
+SOURCES = include/NeMoSTTImpl.cpp include/NeMoSTTWrapper.cpp
+
+# Object files
+OBJECTS = $(SOURCES:.cpp=.o)
+
+# Target library
+LIB = lib/libnemo_stt.so
+
+# Linker flags
+LDFLAGS := -shared
+LDFLAGS += $(PYTHON_LDFLAGS)
+LDFLAGS += -Wl,-rpath,'$$ORIGIN'
+
+all: $(LIB)
+
+$(LIB): $(OBJECTS) | lib
+	$(CXX) $(LDFLAGS) -o $@ $^
+
+lib:
+	mkdir -p lib
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+clean:
+	rm -f $(OBJECTS) $(LIB)
+
+.PHONY: all clean

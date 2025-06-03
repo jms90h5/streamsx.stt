@@ -1,0 +1,218 @@
+namespace UnifiedSTTSample;
+use com.teracloud.streamsx.stt::*;
+
+/**
+ * Unified Speech-to-Text Sample Application
+ * 
+ * This sample demonstrates both STT operators with the same audio processing pipeline.
+ * Choose between operators by changing the composite name in the Makefile.
+ * 
+ * Available implementations:
+ * - OnnxSTTDemo: Uses FastConformer ONNX model via OnnxSTT operator
+ * - NeMoSTTDemo: Uses native NeMo model via NeMoSTT operator
+ */
+
+/**
+ * ONNX-based STT demonstration using FastConformer model
+ */
+composite OnnxSTTDemo {
+    param
+        expression<rstring> $audioFile : getSubmissionTimeValue("audioFile", "../../test_data/audio/11-ibm-culture-2min-16k.wav");
+        expression<rstring> $encoderModel : getSubmissionTimeValue("encoderModel", "../../models/nemo_fastconformer_streaming/conformer_ctc_dynamic.onnx");
+        expression<rstring> $vocabFile : getSubmissionTimeValue("vocabFile", "../../models/nemo_fastconformer_streaming/tokenizer.txt");
+        expression<rstring> $cmvnFile : getSubmissionTimeValue("cmvnFile", "models/global_cmvn.stats");
+        expression<rstring> $provider : getSubmissionTimeValue("provider", "CPU");
+        expression<int32> $numThreads : (int32)getSubmissionTimeValue("numThreads", "4");
+        expression<uint32> $blockSize : (uint32)getSubmissionTimeValue("blockSize", "3200");
+        expression<int32> $sampleRate : (int32)getSubmissionTimeValue("sampleRate", "16000");
+        expression<int32> $chunkSizeMs : (int32)getSubmissionTimeValue("chunkSizeMs", "100");
+        
+    graph
+        // Audio source
+        stream<blob audioChunk, uint64 audioTimestamp> AudioStream = FileAudioSource() {
+            param
+                filename: $audioFile;
+                blockSize: $blockSize;
+                sampleRate: $sampleRate;
+                bitsPerSample: 16;
+                channelCount: 1;
+        }
+        
+        // ONNX speech recognition
+        stream<rstring text, boolean isFinal, float64 confidence> Transcription = OnnxSTT(AudioStream) {
+            param
+                encoderModel: $encoderModel;
+                vocabFile: $vocabFile;
+                cmvnFile: $cmvnFile;
+                sampleRate: $sampleRate;
+                chunkSizeMs: $chunkSizeMs;
+                provider: $provider;
+                numThreads: $numThreads;
+        }
+        
+        // Results processing
+        () as Results = STTResultProcessor(Transcription) {
+            param
+                modelType: "FastConformer (ONNX)";
+                modelFile: $encoderModel;
+                audioFile: $audioFile;
+                processingMode: "ONNX Runtime";
+                provider: $provider;
+                threads: $numThreads;
+        }
+}
+
+/**
+ * NeMo-based STT demonstration using native .nemo model
+ */
+composite NeMoSTTDemo {
+    param
+        expression<rstring> $audioFile : getSubmissionTimeValue("audioFile", "../../test_data/audio/11-ibm-culture-2min-16k.wav");
+        expression<rstring> $modelPath : getSubmissionTimeValue("modelPath", "../../models/nemo_fastconformer_direct/stt_en_fastconformer_hybrid_large_streaming_multi.nemo");
+        expression<int32> $chunkDurationMs : (int32)getSubmissionTimeValue("chunkDurationMs", "100");
+        expression<uint32> $blockSize : (uint32)getSubmissionTimeValue("blockSize", "3200");
+        expression<int32> $sampleRate : (int32)getSubmissionTimeValue("sampleRate", "16000");
+        
+    graph
+        // Audio source (same as ONNX version)
+        stream<blob audioChunk, uint64 audioTimestamp> AudioStream = FileAudioSource() {
+            param
+                filename: $audioFile;
+                blockSize: $blockSize;
+                sampleRate: $sampleRate;
+                bitsPerSample: 16;
+                channelCount: 1;
+        }
+        
+        // NeMo speech recognition
+        stream<rstring text, boolean isFinal, float64 confidence> Transcription = NeMoSTT(AudioStream) {
+            param
+                modelPath: $modelPath;
+                audioFormat: mono16k;
+                chunkDurationMs: $chunkDurationMs;
+                minSpeechDurationMs: 0;
+        }
+        
+        // Results processing (same logic as ONNX version)
+        () as Results = STTResultProcessor(Transcription) {
+            param
+                modelType: "FastConformer (NeMo)";
+                modelFile: $modelPath;
+                audioFile: $audioFile;
+                processingMode: "Native NeMo";
+                provider: "CPU";
+                threads: 1;
+        }
+}
+
+/**
+ * Common result processing logic for both STT approaches
+ */
+composite STTResultProcessor(input stream<rstring text, boolean isFinal, float64 confidence> TranscriptionStream) {
+    param
+        expression<rstring> $modelType;
+        expression<rstring> $modelFile;
+        expression<rstring> $audioFile;
+        expression<rstring> $processingMode;
+        expression<rstring> $provider;
+        expression<int32> $threads;
+        
+    graph
+        () as ResultDisplay = Custom(TranscriptionStream) {
+            logic
+                state: {
+                    mutable rstring fullTranscript = "";
+                    mutable uint64 segmentCount = 0ul;
+                    mutable uint64 finalCount = 0ul;
+                    mutable uint64 partialCount = 0ul;
+                    mutable float64 totalConfidence = 0.0;
+                    mutable float64 minConfidence = 1.0;
+                    mutable float64 maxConfidence = 0.0;
+                    mutable float64 startTime = getTimestampInSecs();
+                    mutable float64 firstResultTime = 0.0;
+                    mutable boolean hasResults = false;
+                }
+                
+                onTuple TranscriptionStream: {
+                    segmentCount++;
+                    
+                    if (!hasResults && text != "") {
+                        firstResultTime = getTimestampInSecs();
+                        hasResults = true;
+                    }
+                    
+                    if (text != "") {
+                        // Update transcript
+                        if (fullTranscript == "") {
+                            fullTranscript = text;
+                        } else {
+                            fullTranscript = fullTranscript + " " + text;
+                        }
+                        
+                        // Update statistics
+                        totalConfidence += confidence;
+                        if (confidence < minConfidence) minConfidence = confidence;
+                        if (confidence > maxConfidence) maxConfidence = confidence;
+                        
+                        if (isFinal) {
+                            finalCount++;
+                        } else {
+                            partialCount++;
+                        }
+                        
+                        // Real-time display
+                        printStringLn("[" + (rstring)segmentCount + "] " + 
+                                     (isFinal ? "FINAL" : "PARTIAL") + ": " + 
+                                     text + 
+                                     " (confidence: " + (rstring)confidence + ")");
+                    }
+                }
+                
+                onPunct TranscriptionStream: {
+                    if (currentPunct() == Sys.FinalMarker) {
+                        float64 endTime = getTimestampInSecs();
+                        float64 totalTime = endTime - startTime;
+                        float64 latency = hasResults ? (firstResultTime - startTime) : 0.0;
+                        
+                        // Header
+                        printStringLn("\n" + "======================================================================");
+                        printStringLn("    UNIFIED STT SAMPLE - TRANSCRIPTION COMPLETE");
+                        printStringLn("======================================================================");
+                        
+                        // Model information
+                        printStringLn("Model Type: " + $modelType);
+                        printStringLn("Model File: " + $modelFile);
+                        printStringLn("Processing: " + $processingMode);
+                        printStringLn("Provider: " + $provider + " (" + (rstring)$threads + " threads)");
+                        printStringLn("Audio File: " + $audioFile);
+                        
+                        // Performance metrics
+                        printStringLn("----------------------------------------------------------------------");
+                        printStringLn("PERFORMANCE METRICS:");
+                        printStringLn("Total processing time: " + (rstring)totalTime + " seconds");
+                        printStringLn("Time to first result: " + (rstring)latency + " seconds");
+                        printStringLn("Total segments: " + (rstring)segmentCount);
+                        printStringLn("Final segments: " + (rstring)finalCount);
+                        printStringLn("Partial segments: " + (rstring)partialCount);
+                        
+                        // Confidence statistics
+                        if (segmentCount > 0ul) {
+                            float64 avgConfidence = totalConfidence / (float64)segmentCount;
+                            printStringLn("Average confidence: " + (rstring)avgConfidence);
+                            printStringLn("Confidence range: " + (rstring)minConfidence + " - " + (rstring)maxConfidence);
+                        }
+                        
+                        // Full transcript
+                        printStringLn("----------------------------------------------------------------------");
+                        printStringLn("FULL TRANSCRIPT:");
+                        printStringLn("----------------------------------------------------------------------");
+                        if (fullTranscript != "") {
+                            printStringLn(fullTranscript);
+                        } else {
+                            printStringLn("(No transcription results)");
+                        }
+                        printStringLn("======================================================================");
+                    }
+                }
+        }
+}

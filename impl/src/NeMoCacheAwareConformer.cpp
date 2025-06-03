@@ -13,7 +13,8 @@ NeMoCacheAwareConformer::NeMoCacheAwareConformer(const NeMoConfig& config)
     , cache_initialized_(false)
     , total_chunks_processed_(0)
     , total_processing_time_ms_(0)
-    , cache_updates_(0) {
+    , cache_updates_(0)
+    , vocab_loaded_(false) {
     
     // Initialize ONNX Runtime environment
     env_ = std::make_unique<Ort::Env>(ORT_LOGGING_LEVEL_WARNING, "NeMoCacheAwareConformer");
@@ -49,6 +50,14 @@ bool NeMoCacheAwareConformer::initialize(const ModelConfig& config) {
     if (!initializeCacheTensors()) {
         std::cerr << "Failed to initialize cache tensors" << std::endl;
         return false;
+    }
+    
+    // Load vocabulary if path provided
+    if (!config_.vocab_path.empty()) {
+        if (!loadVocabulary(config_.vocab_path)) {
+            std::cerr << "Warning: Failed to load vocabulary from " << config_.vocab_path << std::endl;
+            std::cerr << "Token decoding will output token IDs instead of text" << std::endl;
+        }
     }
     
     std::cout << "NeMo Cache-Aware Conformer initialized successfully" << std::endl;
@@ -127,6 +136,50 @@ bool NeMoCacheAwareConformer::initializeCacheTensors() {
     }
 }
 
+bool NeMoCacheAwareConformer::loadVocabulary(const std::string& vocab_path) {
+    try {
+        std::ifstream vocab_file(vocab_path);
+        if (!vocab_file.is_open()) {
+            std::cerr << "Cannot open vocabulary file: " << vocab_path << std::endl;
+            return false;
+        }
+        
+        vocabulary_.clear();
+        std::string line;
+        
+        while (std::getline(vocab_file, line)) {
+            // Each line contains the token (tab/space separated from any other info)
+            // Extract just the token part
+            size_t tab_pos = line.find('\t');
+            if (tab_pos != std::string::npos) {
+                vocabulary_.push_back(line.substr(tab_pos + 1));
+            } else {
+                vocabulary_.push_back(line);
+            }
+        }
+        
+        vocab_file.close();
+        vocab_loaded_ = true;
+        
+        std::cout << "Loaded vocabulary with " << vocabulary_.size() << " tokens from " << vocab_path << std::endl;
+        
+        // Print first few tokens for verification
+        if (vocabulary_.size() >= 10) {
+            std::cout << "First 10 tokens: ";
+            for (size_t i = 0; i < 10; ++i) {
+                std::cout << "[" << i << "]=" << vocabulary_[i] << " ";
+            }
+            std::cout << std::endl;
+        }
+        
+        return true;
+        
+    } catch (const std::exception& e) {
+        std::cerr << "Error loading vocabulary: " << e.what() << std::endl;
+        return false;
+    }
+}
+
 ModelInterface::TranscriptionResult NeMoCacheAwareConformer::processChunk(const std::vector<std::vector<float>>& features,
                                                                      uint64_t timestamp_ms) {
     auto start_time = std::chrono::high_resolution_clock::now();
@@ -181,11 +234,24 @@ ModelInterface::TranscriptionResult NeMoCacheAwareConformer::processChunk(const 
         std::vector<float> audio_signal_data;
         audio_signal_data.reserve(batch_size * time_frames * feature_dim);
         
+        // Debug: Check feature statistics
+        float min_feat = std::numeric_limits<float>::max();
+        float max_feat = std::numeric_limits<float>::lowest();
+        float sum_feat = 0.0f;
+        
         for (size_t time = 0; time < time_frames; ++time) {
             for (size_t feat = 0; feat < feature_dim; ++feat) {
-                audio_signal_data.push_back(padded_features[time][feat]);
+                float val = padded_features[time][feat];
+                audio_signal_data.push_back(val);
+                min_feat = std::min(min_feat, val);
+                max_feat = std::max(max_feat, val);
+                sum_feat += val;
             }
         }
+        
+        float avg_feat = sum_feat / (time_frames * feature_dim);
+        std::cout << "Feature stats: min=" << min_feat << ", max=" << max_feat 
+                  << ", avg=" << avg_feat << std::endl;
         
         std::vector<int64_t> audio_signal_shape = {static_cast<int64_t>(batch_size), 
                                                   static_cast<int64_t>(time_frames),
@@ -212,12 +278,10 @@ ModelInterface::TranscriptionResult NeMoCacheAwareConformer::processChunk(const 
             auto log_probs_shape = log_probs_tensor.GetTensorTypeAndShapeInfo().GetShape();
             
             // Shape should be [1, seq_len//4, 128] due to subsampling in our model
-            int64_t batch_size_out = log_probs_shape[0];
             int64_t seq_len_out = log_probs_shape[1]; 
             int64_t num_classes = log_probs_shape[2];
             
             // Decode CTC output (simplified - argmax for now)
-            size_t total_elements = static_cast<size_t>(seq_len_out * num_classes);
             result.text = decodeCTCTokens(log_probs_data, seq_len_out, num_classes);
             result.confidence = 0.85f;  // Placeholder confidence
             
@@ -290,6 +354,7 @@ std::string NeMoCacheAwareConformer::decodeCTCTokens(const float* log_probs, int
     // In production, would use beam search CTC decoding
     
     std::vector<int> token_ids;
+    std::vector<float> max_probs;
     
     // Find best token for each time step
     for (int64_t t = 0; t < seq_len; ++t) {
@@ -305,6 +370,17 @@ std::string NeMoCacheAwareConformer::decodeCTCTokens(const float* log_probs, int
         }
         
         token_ids.push_back(best_token);
+        max_probs.push_back(max_prob);
+    }
+    
+    // Debug: Print raw tokens for first few time steps
+    if (seq_len > 0) {
+        std::cout << "Raw CTC tokens: ";
+        for (int64_t t = 0; t < std::min(seq_len, static_cast<int64_t>(10)); ++t) {
+            std::cout << token_ids[t] << "(" << max_probs[t] << ") ";
+        }
+        if (seq_len > 10) std::cout << "...";
+        std::cout << std::endl;
     }
     
     // Simple CTC collapse - remove consecutive duplicates and blanks (token 0)
@@ -319,12 +395,36 @@ std::string NeMoCacheAwareConformer::decodeCTCTokens(const float* log_probs, int
     }
     
     // Convert token IDs to text using vocabulary
-    std::string result = "[NeMo CTC: ";
-    for (size_t i = 0; i < collapsed_tokens.size(); ++i) {
-        if (i > 0) result += " ";
-        result += std::to_string(collapsed_tokens[i]);
+    std::string result;
+    
+    if (vocab_loaded_ && !vocabulary_.empty()) {
+        // Use vocabulary to decode tokens
+        for (int token_id : collapsed_tokens) {
+            if (token_id >= 0 && token_id < static_cast<int>(vocabulary_.size())) {
+                std::string token = vocabulary_[token_id];
+                
+                // Handle subword tokens (starting with ##)
+                if (token.substr(0, 2) == "##") {
+                    result += token.substr(2);  // Remove ## prefix
+                } else if (!result.empty() && !token.empty()) {
+                    result += " " + token;  // Add space before whole words
+                } else {
+                    result += token;
+                }
+            } else {
+                // Unknown token
+                result += " [UNK:" + std::to_string(token_id) + "]";
+            }
+        }
+    } else {
+        // Fallback to showing token IDs if vocab not loaded
+        result = "[NeMo CTC IDs: ";
+        for (size_t i = 0; i < collapsed_tokens.size(); ++i) {
+            if (i > 0) result += " ";
+            result += std::to_string(collapsed_tokens[i]);
+        }
+        result += "]";
     }
-    result += "]";
     
     return result;
 }

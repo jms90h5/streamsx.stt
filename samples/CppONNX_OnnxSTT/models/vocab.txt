@@ -1,1 +1,1 @@
-../../../models/sherpa-onnx-streaming-zipformer-bilingual-zh-en-2023-02-20/tokens.txt
+../../../models/sherpa_onnx_paraformer/sherpa-onnx-streaming-zipformer-bilingual-zh-en-2023-02-20/tokens.txt

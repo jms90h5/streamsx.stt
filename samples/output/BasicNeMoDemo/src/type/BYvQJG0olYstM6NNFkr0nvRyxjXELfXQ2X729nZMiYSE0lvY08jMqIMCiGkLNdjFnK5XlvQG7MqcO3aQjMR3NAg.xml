@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<enumerationModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/enumeration" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <class>BYvQJG0olYstM6NNFkr0nvRyxjXELfXQ2X729nZMiYSE0lvY08jMqIMCiGkLNdjFnK5XlvQG7MqcO3aQjMR3NAg</class>
+  <enumerators>
+    <enumerator>
+      <name>mono8k</name>
+    </enumerator>
+    <enumerator>
+      <name>mono16k</name>
+    </enumerator>
+    <enumerator>
+      <name>mono22k</name>
+    </enumerator>
+    <enumerator>
+      <name>mono44k</name>
+    </enumerator>
+    <enumerator>
+      <name>mono48k</name>
+    </enumerator>
+  </enumerators>
+</enumerationModel>

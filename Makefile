@@ -24,3 +24,13 @@ clean-all:
 	$(MAKE) -C impl clean
 	@echo "Cleaning toolkit..."
 	$(MAKE) clean
+
+# Test cache-aware NeMo model
+test-nemo-cache-aware: build-all
+	@echo "Building and running NeMo Cache-Aware Streaming test..."
+	g++ -std=c++14 -O2 -I./impl/include -I./deps/onnxruntime/include \
+		test_nemo_cache_aware.cpp impl/lib/libs2t_impl.so \
+		-L./deps/onnxruntime/lib -lonnxruntime \
+		-Wl,-rpath,'$$ORIGIN/impl/lib' -Wl,-rpath,'$$ORIGIN/deps/onnxruntime/lib' \
+		-o test_nemo_cache_aware
+	./test_nemo_cache_aware

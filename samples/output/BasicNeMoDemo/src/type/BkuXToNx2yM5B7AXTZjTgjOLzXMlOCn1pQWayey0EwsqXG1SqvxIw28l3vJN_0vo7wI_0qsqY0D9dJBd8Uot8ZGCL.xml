@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<tupleModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/tuple" class="BkuXToNx2yM5B7AXTZjTgjOLzXMlOCn1pQWayey0EwsqXG1SqvxIw28l3vJN_0vo7wI_0qsqY0D9dJBd8Uot8ZGCL" equalitySupported="true" facade="false" splType="tuple&lt;rstring transcription>" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <headers/>
+  <attributes>
+    <attribute>
+      <name>transcription</name>
+      <cppType>SPL::rstring</cppType>
+      <splType>rstring</splType>
+    </attribute>
+  </attributes>
+</tupleModel>

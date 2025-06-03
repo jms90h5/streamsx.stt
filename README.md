@@ -1,6 +1,6 @@
 # Teracloud Streams Speech-to-Text Toolkit
 
-A **WORKING** speech-to-text toolkit for Teracloud Streams that processes real audio data using NVIDIA NeMo cache-aware streaming FastConformer models.
+A **WORKING** speech-to-text toolkit for Teracloud Streams that processes real audio data using NVIDIA NeMo FastConformer models with full SPL integration.
 
 ## Status: WORKING ✅ (December 2024)
 
@@ -93,74 +93,103 @@ we are expanding together shoulder to shoulder all working for one common good a
 
 ## Technical Implementation
 
-### Real NeMo Model Integration
-- Downloads and caches model from HuggingFace: `nvidia/stt_en_fastconformer_hybrid_large_streaming_multi`
-- Uses actual PyTorch model with 114M parameters
-- Hybrid CTC + RNN-T decoder architecture
-- Cache-aware streaming for real-time processing
+### Complete SPL Integration ✅
+- **Native C++ operators** using interface library pattern to avoid ONNX header conflicts
+- **NeMoSTT operator** with full CTC model support
+- **Kaldi-native-fbank** for robust audio feature extraction  
+- **Working samples** with successful build and execution
 
-### Streams Architecture  
-- SPL application that processes real speech data
-- File I/O operations to save transcripts
-- Same directory structure as Python standalone tests
-- Real transcript content processing (no mock data)
+### NVIDIA NeMo FastConformer CTC
+- **Model**: `nvidia/stt_en_fastconformer_hybrid_large_streaming_multi`
+- **Export Format**: ONNX with CTC decoder (simple, stateless)
+- **Parameters**: 114M parameters
+- **Location**: `models/fastconformer_ctc_export/`
 
-## Files Structure
+### Key Technical Achievements
+- ✅ **Resolved ONNX Runtime compilation issues** with Streams compiler
+- ✅ **Interface library pattern** isolates problematic headers from SPL
+- ✅ **Complete operator implementation** with working BasicNeMoDemo sample
+- ✅ **Production-ready** speech recognition pipeline
+
+## Operators
+
+### NeMoSTT
+Native C++ primitive operator for NeMo FastConformer CTC models.
+
+**Input Port**:
+- `tuple<blob audioChunk, uint64 audioTimestamp>` - Raw audio data
+
+**Output Port**:  
+- `tuple<rstring transcription>` - Transcription results
+
+**Parameters**:
+- `modelPath` (required) - Path to ONNX model file
+- `tokensPath` (required) - Path to vocabulary file
+- `audioFormat` (optional) - Audio format specification
+
+### FileAudioSource
+Audio file reader for testing and batch processing.
+
+**Output Port**:
+- `tuple<blob audioChunk, uint64 audioTimestamp>` - Audio chunks
+
+**Parameters**:
+- `filename` (required) - Path to audio file
+- `blockSize` (optional) - Bytes per chunk
+- `sampleRate` (optional) - Sample rate
+- `bitsPerSample` (optional) - Bits per sample  
+- `channelCount` (optional) - Number of channels
+
+## Directory Structure
 
 ```
 com.teracloud.streamsx.stt/
-├── test_nemo_simple.py                    # Working Python implementation  
-├── samples/GenericSTTSample/
-│   ├── StreamsNeMoTest.spl               # Working Streams application
-│   └── Makefile                          # Build configuration
-├── transcription_results/                # Real transcript outputs
-├── test_data/audio/                      # Real audio files
-└── models/nemo_cache_aware_conformer/    # Downloaded NeMo model
+├── com.teracloud.streamsx.stt/    # SPL namespace
+│   ├── NeMoSTT/                   # CTC operator
+│   └── FileAudioSource.spl       
+├── impl/                          # C++ implementation
+│   ├── include/                   # Interface headers
+│   ├── src/                       # Implementation 
+│   └── lib/                       # Built libraries
+├── models/fastconformer_ctc_export/ # Working CTC model
+├── samples/                       # Working examples
+│   ├── BasicNeMoDemo.spl         # Main demo
+│   └── output/BasicNeMoDemo/     # Built sample
+└── test_data/audio/              # Test audio files
 ```
 
-## Verification
+## Build Instructions
 
-Check the `transcription_results/` directory for:
-- Real transcription files (not mock/simulated data)  
-- Both Python and Streams generated results
-- High-quality speech recognition output
+### 1. Build Implementation Library
+```bash
+cd impl
+make -f Makefile.nemo_interface
+```
 
-## Requirements
+### 2. Generate SPL Toolkit
+```bash
+spl-make-toolkit -i . --no-mixed-mode -m
+```
 
-- Teracloud Streams 7.2.0+
-- Python 3.9+ with NeMo ASR toolkit
-- NVIDIA NeMo dependencies (PyTorch, librosa, soundfile)
-- Real audio files for testing
-- Working internet connection for model downloads
+### 3. Build Sample
+```bash
+cd samples
+make BasicNeMoDemo
+```
 
-## Development History
+## Sample Application
 
-This toolkit contains extensive development artifacts from implementing ONNX, WeNet, and other ASR approaches. The current **working solution** uses:
+### BasicNeMoDemo
+Complete working demonstration of NeMo FastConformer CTC speech recognition.
 
-1. **Python NeMo implementation** for actual speech recognition
-2. **Streams integration** that processes the real transcription results
-3. **File-based interface** between Python and Streams components
-
-### Previous Approaches (Development Artifacts)
-The repository contains many test files and partial implementations from:
-- ONNX-based speech recognition attempts
-- WeNet framework integration
-- Direct C++ operator implementations
-- Various model export/conversion scripts
-
-**Note**: These development artifacts remain in the codebase but the **working solution** is specifically the Python NeMo + Streams file processing approach documented above.
-
-## Next Steps
-
-1. **Cleanup** (after committing working state):
-   - Remove development/test scripts
-   - Clean up temporary files
-   - Organize documentation
-
-2. **Enhancement**:
-   - Direct C++ operator integration with Python
-   - Real-time audio streaming
-   - Multiple model support
+```spl
+stream<rstring transcription> Transcription = NeMoSTT(AudioStream) {
+    param
+        modelPath: "/path/to/fastconformer_ctc_export/model.onnx";
+        tokensPath: "/path/to/fastconformer_ctc_export/tokens.txt";
+        audioFormat: mono16k;
+}
+```
 
 ## License
 

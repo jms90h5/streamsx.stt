@@ -43,6 +43,9 @@ public:
         // [70,0]: 0ms, [70,1]: 80ms, [70,16]: 480ms, [70,33]: 1040ms
         int att_context_size_left = 70;
         int att_context_size_right = 0;  // 0ms latency by default
+        
+        // Vocabulary file path for token decoding
+        std::string vocab_path = "";
     };
 
     explicit NeMoCacheAwareConformer(const NeMoConfig& config);
@@ -85,9 +88,14 @@ private:
     mutable uint64_t total_processing_time_ms_;
     mutable uint64_t cache_updates_;
     
+    // Vocabulary for token decoding
+    std::vector<std::string> vocabulary_;
+    bool vocab_loaded_;
+    
     // Private methods
     bool initializeONNXSession();
     bool initializeCacheTensors();
+    bool loadVocabulary(const std::string& vocab_path);
     std::vector<Ort::Value> prepareCacheInputs();
     void updateCacheFromOutputs(std::vector<Ort::Value>& outputs);
     std::string decodeTokens(const float* logits, size_t logits_size);

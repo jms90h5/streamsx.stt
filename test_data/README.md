@@ -1,32 +1,45 @@
-# Test Data for Speech-to-Text Toolkit
+# Test Data Directory
 
-This directory contains test data files that can be used with the speech-to-text toolkit samples and tests.
+This directory contains audio test files for the Speech-to-Text toolkit.
 
 ## Audio Files
 
-The `audio/` directory contains various WAV files for testing:
+The `audio/` directory contains test WAV files:
 
-- `0.wav` - English speech sample
-- `1.wav` - English speech sample  
-- `2.wav` - English speech sample
-- `3.wav` - English speech sample
-- `8k.wav` - 8kHz sample (for testing resampling)
-- `aishell-BAC009S0724W0121.wav` - Chinese speech sample
-- `librispeech-1995-1837-0001.wav` - LibriSpeech English sample
+### Primary Test Files
+- **`11-ibm-culture-2min-16k.wav`** - Main test file (2 minutes, 16kHz)
+  - IBM corporate presentation audio
+  - Used by most samples as default
+  
+- **`11-ibm-culture-2min.wav`** - Original version (may be 8kHz)
 
-## Usage in Samples
+### LibriSpeech Test Files
+- `librispeech-1995-1837-0001.wav` - English speech sample
+- `librispeech-1995-1837-0001.raw` - Raw PCM version
 
-Sample applications can reference these files using relative paths:
+### Bilingual Test Files
+- `0.wav`, `1.wav`, `2.wav`, `3.wav` - Short English/Chinese samples
+- `8k.wav` - 8kHz sample for resampling tests
+- `aishell-BAC009S0724W0121.wav` - Chinese AISHELL sample
 
+### Other Test Files
+- `test_16k.wav` - Generic 16kHz test audio
+- `wav_to_raw.py` - Utility script for WAV to RAW conversion
+
+## Usage
+
+Samples reference these files with relative paths:
 ```spl
-expression<rstring> $audioFile : "../../test_data/audio/0.wav";
+param
+    expression<rstring> $audioFile : "../../test_data/audio/11-ibm-culture-2min-16k.wav";
 ```
 
-## Model Data
+## Audio Requirements
 
-The models are located in the `models/` directory:
+For best results, audio should be:
+- **Format**: WAV (PCM)
+- **Sample Rate**: 16000 Hz
+- **Bit Depth**: 16-bit
+- **Channels**: Mono (1 channel)
 
-- `models/wenet_model/` - Complete WeNet model with CMVN stats
-- `models/sherpa-onnx-streaming-zipformer-bilingual-zh-en-2023-02-20/` - ONNX models
-
-All test data and models are self-contained within the toolkit directory structure.
+Use the included `wav_to_raw.py` script to convert files if needed.

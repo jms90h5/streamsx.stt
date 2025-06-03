@@ -1,0 +1,4 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/AudioStream.RawAudioBlocks.so -fPIC -shared $(SOAudioStream.RawAudioBlocks) -lstreams-stdtk-runtime $(SPL_LDFLAGS)\
+	    build/operator/AudioStream/RawAudioBlocks.o \
+	    build/type/BuoCzre0fg5iJdQnrwapkCyjYEMMfTagKrJ53r_0jmfdVfmhf4hwant6OIuyi_14dk4y_0FAB2rdBfcbFQiN6Jd_0An.o \
+	    build/type/Bk0Uw25SjlXvT1SWjTbdPsq3rYHs_0MyINGepUqpl6M4N_13fsN9z_008LvigF23BryMh_0YBpGEGMzYN6naxAG2ZCd.o 

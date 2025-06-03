@@ -2,6 +2,7 @@
 #include "../include/NeMoCacheAwareConformer.hpp"
 #include <iostream>
 #include <string>
+#include <fstream>
 
 namespace onnx_stt {
 
@@ -44,6 +45,20 @@ std::unique_ptr<ModelInterface> createNeMoModel(const ModelInterface::ModelConfi
     nemo_config.att_context_size_left = 70;
     nemo_config.att_context_size_right = 0;
     
+    // Set vocabulary path - derive from model path
+    // Try different vocabulary file names
+    std::string model_dir = config.encoder_path.substr(0, config.encoder_path.find_last_of("/\\"));
+    
+    // First try tokenizer.txt (for this model)
+    nemo_config.vocab_path = model_dir + "/tokenizer.txt";
+    std::ifstream test_file(nemo_config.vocab_path);
+    if (!test_file.good()) {
+        // Fallback to vocab.txt
+        nemo_config.vocab_path = model_dir + "/vocab.txt";
+    }
+    
+    std::cout << "Using vocabulary: " << nemo_config.vocab_path << std::endl;
+    
     auto nemo_model = std::make_unique<NeMoCacheAwareConformer>(nemo_config);
     
     if (!nemo_model->initialize(config)) {
@@ -51,7 +66,7 @@ std::unique_ptr<ModelInterface> createNeMoModel(const ModelInterface::ModelConfi
         return nullptr;
     }
     
-    return std::move(nemo_model);
+    return nemo_model;
 }
 
 std::unique_ptr<ModelInterface> createModel(const ModelInterface::ModelConfig& config) {

@@ -1,0 +1,52 @@
+<%
+    # Get parameters
+    my $modelPath = $model->getParameterByName("modelPath");
+    my $audioFormat = $model->getParameterByName("audioFormat");
+    my $chunkDurationMs = $model->getParameterByName("chunkDurationMs");
+    my $minSpeechDurationMs = $model->getParameterByName("minSpeechDurationMs");
+%>
+
+/* Additional includes for NeMoSTT operator */
+#include <NeMoSTTWrapper.hpp>
+#include <vector>
+#include <memory>
+
+<%SPL::CodeGen::headerPrologue($model);%>
+
+class MY_OPERATOR : public MY_BASE_OPERATOR 
+{
+public:
+    MY_OPERATOR();
+    virtual ~MY_OPERATOR(); 
+
+    void allPortsReady(); 
+    void prepareToShutdown(); 
+    
+    void process(Tuple const & tuple, uint32_t port);
+    void process(Punctuation const & punct, uint32_t port);
+    
+private:
+    // NeMo STT implementation
+    std::unique_ptr<com::teracloud::streams::stt::NeMoSTTWrapper> nemoSTT_;
+    
+    // Audio parameters
+    int sampleRate_;
+    int channels_;
+    
+    // Model path
+    std::string modelPath_;
+    
+    // Configuration
+    int chunkDurationMs_;
+    int minSpeechDurationMs_;
+    
+    // Audio buffer
+    std::vector<float> audioBuffer_;
+    
+    // Helper methods
+    void processAudioData(const void* data, size_t bytes, int bitsPerSample);
+    void outputTranscription(const std::string& text);
+    int getSampleRate() const;
+}; 
+
+<%SPL::CodeGen::headerEpilogue($model);%>

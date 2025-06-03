@@ -1,0 +1,5 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/Transcription.so -fPIC -shared $(SOTranscription) -L /homes/jsharpe/teracloud/com.teracloud.streamsx.stt/impl/lib -Wl,-rpath -Wl,\$$ORIGIN/../toolkits/com.teracloud.streamsx.stt/impl/lib -lnemo_ctc_interface -L /homes/jsharpe/teracloud/com.teracloud.streamsx.stt/deps/onnxruntime/lib -Wl,-rpath -Wl,\$$ORIGIN/../toolkits/com.teracloud.streamsx.stt/deps/onnxruntime/lib -lonnxruntime -L /homes/jsharpe/teracloud/com.teracloud.streamsx.stt/deps/kaldi-native-fbank/lib -Wl,-rpath -Wl,\$$ORIGIN/../toolkits/com.teracloud.streamsx.stt/deps/kaldi-native-fbank/lib -lkaldi-native-fbank-core $(SPL_LDFLAGS)\
+	    build/operator/Transcription.o \
+	    build/type/BYvQJG0olYstM6NNFkr0nvRyxjXELfXQ2X729nZMiYSE0lvY08jMqIMCiGkLNdjFnK5XlvQG7MqcO3aQjMR3NAg.o \
+	    build/type/BJnZ5CG7dYuCzMUhZJwzAL3_0GdbQo3dSshe140tlHizvLTKJjeJwGLYVXIY0saSuxtDflHAbgU4Wsd74BTRfIBC.o \
+	    build/type/BkuXToNx2yM5B7AXTZjTgjOLzXMlOCn1pQWayey0EwsqXG1SqvxIw28l3vJN_0vo7wI_0qsqY0D9dJBd8Uot8ZGCL.o 

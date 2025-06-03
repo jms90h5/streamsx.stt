@@ -3,7 +3,7 @@
 .PHONY: all distributed clean 
 
 # Application parameters
-SPL_MAIN_COMPOSITE = ONNXRealtime
+SPL_MAIN_COMPOSITE = CppONNX_OnnxSTT::IBMCultureTest
 SPLC = $(STREAMS_INSTALL)/bin/sc
 SPLC_FLAGS = -a -t ../../../
 OUTPUT_DIR = output
@@ -19,8 +19,8 @@ clean:
 
 # Submit to Streams instance
 submit: distributed
-	$(STREAMS_INSTALL)/bin/streamtool submitjob $(OUTPUT_DIR)/ONNXRealtime.sab
+	$(STREAMS_INSTALL)/bin/streamtool submitjob $(OUTPUT_DIR)/IBMCultureTest.sab
 
 # Cancel running jobs
 cancel:
-	$(STREAMS_INSTALL)/bin/streamtool canceljob --jobname ONNXRealtime
+	$(STREAMS_INSTALL)/bin/streamtool canceljob --jobname IBMCultureTest
