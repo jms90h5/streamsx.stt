@@ -1,0 +1,147 @@
+use com.teracloud.streamsx.stt::*;
+use spl.utility::Throttle;
+
+/**
+ * NeMo CTC File Transcription with Comprehensive Analysis
+ * 
+ * Batch processing of audio files with detailed transcription analysis.
+ * Supports multiple file formats and provides word-level statistics.
+ * 
+ * Submission parameters:
+ * - realtimePlayback: Process audio at 1x speed (default: false)
+ * - audioFile: Path to audio file (default: IBM culture sample)
+ * - outputDir: Directory for output files (default: current directory)
+ * 
+ * Example:
+ *   streamtool submitjob output/NeMoFileTranscription/NeMoFileTranscription.sab
+ *   streamtool submitjob output/NeMoFileTranscription/NeMoFileTranscription.sab \
+ *     -P realtimePlayback=true \
+ *     -P audioFile=/path/to/custom.wav
+ */
+composite NeMoFileTranscription {
+    param
+        expression<boolean> $realtimePlayback: 
+            (boolean)getSubmissionTimeValue("realtimePlayback", "false");
+        expression<rstring> $audioFile:
+            getSubmissionTimeValue("audioFile", 
+                "/homes/jsharpe/teracloud/com.teracloud.streamsx.stt/test_data/audio/11-ibm-culture-2min-16k.wav");
+        expression<rstring> $outputDir:
+            getSubmissionTimeValue("outputDir", ".");
+            
+    type
+        TranscriptionAnalysis = tuple<
+            rstring filename,
+            rstring transcription,
+            int32 wordCount,
+            int32 charCount,
+            float64 audioDurationSec,
+            float64 processingTimeSec,
+            float64 speedupFactor,
+            timestamp startTime,
+            timestamp endTime
+        >;
+        
+    graph
+        // Audio source with large chunks for batch processing
+        stream<blob audioChunk, uint64 audioTimestamp> AudioStream = FileAudioSource() {
+            param
+                filename: $audioFile;
+                blockSize: 32768u;  // 2 second chunks for batch efficiency
+                sampleRate: 16000;
+                bitsPerSample: 16;
+                channelCount: 1;
+        }
+        
+        // Optional throttling for real-time processing
+        stream<blob audioChunk, uint64 audioTimestamp> ProcessedAudio = Throttle(AudioStream) {
+            param
+                rate: $realtimePlayback ? 0.9765625 : 1000000.0;  // For 2-second chunks if throttling
+                precise: true;
+        }
+        
+        // NeMo transcription
+        stream<rstring transcription> NeMoOut = NeMoSTT(ProcessedAudio) {
+            param
+                modelPath: "/homes/jsharpe/teracloud/com.teracloud.streamsx.stt/models/fastconformer_ctc_export/model.onnx";
+                audioFormat: mono16k;
+        }
+        
+        // Aggregate transcription results into analysis
+        stream<TranscriptionAnalysis> Analysis = Custom(NeMoOut) {
+            logic
+                state: {
+                    mutable rstring fullTranscription = "";
+                    mutable int32 chunkCount = 0;
+                    mutable timestamp processStart = getTimestamp();
+                }
+                onTuple NeMoOut: {
+                    if (chunkCount == 0) {
+                        processStart = getTimestamp();
+                    }
+                    fullTranscription += transcription + " ";
+                    chunkCount++;
+                }
+                
+                onPunct NeMoOut: {
+                    if (currentPunct() == Sys.FinalMarker) {
+                        timestamp processEnd = getTimestamp();
+                        float64 processingTimeSec = diffAsSecs(processEnd, processStart);
+                        
+                        // Clean up transcription
+                        fullTranscription = spl.string::trim(fullTranscription, " \t\n");
+                        
+                        // Calculate statistics
+                        list<rstring> words = tokenize(fullTranscription, " ", false);
+                        int32 wordCount = size(words);
+                        int32 charCount = length(fullTranscription);
+                        float64 estimatedAudioDuration = (float64)chunkCount * 2.0; // Estimate based on chunk count
+                        float64 speedupFactor = estimatedAudioDuration / processingTimeSec;
+                        
+                        submit({
+                            filename = $audioFile,
+                            transcription = fullTranscription,
+                            wordCount = wordCount,
+                            charCount = charCount,
+                            audioDurationSec = estimatedAudioDuration,
+                            processingTimeSec = processingTimeSec,
+                            speedupFactor = speedupFactor,
+                            startTime = processStart,
+                            endTime = processEnd
+                        }, Analysis);
+                    }
+                }
+        }
+        
+        // Display analysis results
+        () as DisplayAnalysis = Custom(Analysis) {
+            logic onTuple Analysis: {
+                printStringLn("\n=== NeMo CTC File Transcription Analysis ===");
+                printStringLn("Mode: " + ($realtimePlayback ? "1x Realtime Playback" : "Fast Processing"));
+                printStringLn("File: " + filename);
+                printStringLn("Audio duration: " + (rstring)audioDurationSec + " seconds");
+                printStringLn("Processing time: " + (rstring)processingTimeSec + " seconds");
+                printStringLn("Speedup: " + (rstring)speedupFactor + "x real-time");
+                printStringLn("Word count: " + (rstring)wordCount);
+                printStringLn("Character count: " + (rstring)charCount);
+                printStringLn("\nTranscription:");
+                printStringLn("---");
+                printStringLn(transcription);
+                printStringLn("---");
+                printStringLn("Model: nvidia/stt_en_fastconformer_hybrid_large_streaming_multi (CTC)");
+            }
+        }
+        
+        // Save transcription to file
+        () as TranscriptionFile = FileSink(Analysis) {
+            param
+                file: $outputDir + "/transcription_" + (rstring)getTimestampInSecs() + ".txt";
+                format: txt;
+        }
+        
+        // Save detailed analysis to CSV
+        () as AnalysisCSV = FileSink(Analysis) {
+            param
+                file: $outputDir + "/analysis_" + (rstring)getTimestampInSecs() + ".csv";
+                format: csv;
+        }
+}

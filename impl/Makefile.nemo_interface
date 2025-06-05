@@ -1,0 +1,90 @@
+# Makefile for NeMo CTC Interface Library
+# Builds libnemo_ctc_interface.so for use with SPL samples
+
+CXX = g++
+CXXFLAGS = -std=c++17 -O2 -Wall -Wextra -fPIC -shared
+
+# Directories
+ONNX_DIR = ../deps/onnxruntime
+KALDI_DIR = ../deps/kaldi-native-fbank
+IMPL_DIR = .
+LIB_DIR = lib
+
+# Include paths
+INCLUDES = -I$(ONNX_DIR)/include \
+           -I$(KALDI_DIR)/include \
+           -I$(IMPL_DIR)/include \
+           -I$(IMPL_DIR)/src
+
+# Library paths and libraries
+LIBS = -L$(ONNX_DIR)/lib -lonnxruntime \
+       -L$(KALDI_DIR)/lib -lkaldi-native-fbank-core \
+       -Wl,-rpath,$(ONNX_DIR)/lib:$(KALDI_DIR)/lib
+
+# Source files for the interface library
+INTERFACE_SOURCES = include/NeMoCTCImpl.cpp \
+                   src/KaldiFbankFeatureExtractor.cpp
+
+# Object files
+INTERFACE_OBJECTS = include/NeMoCTCImpl.o \
+                   src/KaldiFbankFeatureExtractor.o
+
+# Target library
+TARGET = $(LIB_DIR)/libnemo_ctc_interface.so
+
+.PHONY: all clean check-deps test
+
+all: check-deps $(TARGET)
+
+check-deps:
+	@echo "Checking dependencies..."
+	@if [ ! -f "$(ONNX_DIR)/lib/libonnxruntime.so" ]; then \
+		echo "ERROR: ONNX Runtime not found at $(ONNX_DIR)"; \
+		echo "Run setup_onnx_runtime.sh first"; \
+		exit 1; \
+	fi
+	@if [ ! -f "$(KALDI_DIR)/lib/libkaldi-native-fbank-core.so" ]; then \
+		echo "ERROR: Kaldi-native-fbank not found at $(KALDI_DIR)"; \
+		echo "Run setup_kaldi_fbank.sh first"; \
+		exit 1; \
+	fi
+	@echo "✅ Dependencies found"
+
+$(LIB_DIR):
+	mkdir -p $(LIB_DIR)
+
+$(TARGET): $(LIB_DIR) $(INTERFACE_OBJECTS)
+	@echo "Building NeMo CTC interface library..."
+	$(CXX) $(CXXFLAGS) $(INTERFACE_OBJECTS) -o $(TARGET) $(LIBS)
+	@echo "✅ Built $(TARGET)"
+
+include/NeMoCTCImpl.o: include/NeMoCTCImpl.cpp include/NeMoCTCImpl.hpp include/NeMoCTCInterface.hpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+src/KaldiFbankFeatureExtractor.o: src/KaldiFbankFeatureExtractor.cpp include/KaldiFbankFeatureExtractor.hpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+clean:
+	rm -f $(INTERFACE_OBJECTS) $(TARGET)
+	@echo "✅ Cleaned interface library build artifacts"
+
+test: $(TARGET)
+	@echo "Testing interface library..."
+	@if ldd $(TARGET) | grep -q "not found"; then \
+		echo "❌ Missing dependencies:"; \
+		ldd $(TARGET) | grep "not found"; \
+		exit 1; \
+	else \
+		echo "✅ Interface library dependencies OK"; \
+	fi
+
+info:
+	@echo "Build configuration:"
+	@echo "  ONNX Runtime: $(ONNX_DIR)"
+	@echo "  Kaldi Fbank: $(KALDI_DIR)"
+	@echo "  Target: $(TARGET)"
+	@echo ""
+	@echo "Usage:"
+	@echo "  make -f Makefile.nemo_interface        # Build interface library"
+	@echo "  make -f Makefile.nemo_interface test   # Build and test"
+	@echo "  make -f Makefile.nemo_interface clean  # Clean build files"

@@ -1,0 +1,4 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/Display.so -fPIC -shared $(SODisplay) $(SPL_LDFLAGS)\
+	    build/operator/Display.o \
+	    build/type/BcyIw_123yuxalGHt_0UPzvHr6jutVOfqYy4EjyWMc7ELFtCMYkxYjxKoc_1GyrP3_0eilO0roi7TbPc_14tWTm1iZBT.o \
+	    build/type/B2rNrSkKrWYTTG0yXfkdrUykBA8vL_1Bhn_1bqqbqWmnzNkPmG1aLkG2HTzzPOuq28lNrJgpRUEPHI34Wv5perWBo.o 

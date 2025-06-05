@@ -1,0 +1,4 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/MetricsWriter.so -fPIC -shared $(SOMetricsWriter) -lstreams-stdtk-runtime $(SPL_LDFLAGS)\
+	    build/operator/MetricsWriter.o \
+	    build/type/BuoCzre0fg5iJdQnrwapkCyjYEMMfTagKrJ53r_0jmfdVfmhf4hwant6OIuyi_14dk4y_0FAB2rdBfcbFQiN6Jd_0An.o \
+	    build/type/B2rNrSkKrWYTTG0yXfkdrUykBA8vL_1Bhn_1bqqbqWmnzNkPmG1aLkG2HTzzPOuq28lNrJgpRUEPHI34Wv5perWBo.o 

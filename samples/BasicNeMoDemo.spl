@@ -1,0 +1,72 @@
+use com.teracloud.streamsx.stt::*;
+use spl.utility::Throttle;
+
+/**
+ * Basic NeMo CTC Speech-to-Text Demo with optional realtime playback
+ * 
+ * Simple demonstration of the working NeMo FastConformer implementation.
+ * This shows the minimal configuration needed to get speech recognition working.
+ * 
+ * Submission parameters:
+ * - realtimePlayback: Process audio at 1x speed (default: false)
+ * 
+ * Example:
+ *   streamtool submitjob output/BasicNeMoDemo/BasicNeMoDemo.sab
+ *   streamtool submitjob output/BasicNeMoDemo/BasicNeMoDemo.sab -P realtimePlayback=true
+ */
+composite BasicNeMoDemo {
+    param
+        // Submission-time parameter for realtime playback
+        expression<boolean> $realtimePlayback: 
+            (boolean)getSubmissionTimeValue("realtimePlayback", "false");
+            
+    graph
+        // Simple audio source - reads from test file
+        stream<blob audioChunk, uint64 audioTimestamp> AudioStream = FileAudioSource() {
+            param
+                filename: "/homes/jsharpe/teracloud/com.teracloud.streamsx.stt/test_data/audio/11-ibm-culture-2min-16k.wav";
+                blockSize: 16384u;  // 1 second chunks
+                sampleRate: 16000;
+                bitsPerSample: 16;
+                channelCount: 1;
+        }
+        
+        // Optional throttling for real-time processing
+        stream<blob audioChunk, uint64 audioTimestamp> ProcessedAudio = Throttle(AudioStream) {
+            param
+                rate: $realtimePlayback ? 1.0 : 1000000.0;  // 1 tuple/sec if throttling, very high if not
+                precise: true;
+        }
+        
+        // NeMo speech recognition with minimal configuration
+        stream<rstring transcription> Transcription = NeMoSTT(ProcessedAudio) {
+            param
+                modelPath: "/homes/jsharpe/teracloud/com.teracloud.streamsx.stt/models/fastconformer_ctc_export/model.onnx";
+                audioFormat: mono16k;
+        }
+        
+        // Display results with timing info if in realtime mode
+        () as Display = Custom(Transcription) {
+            logic
+                state: {
+                    mutable timestamp startTime = getTimestamp();
+                }
+                onTuple Transcription: {
+                    if ($realtimePlayback) {
+                        float64 elapsed = diffAsSecs(getTimestamp(), startTime);
+                        printStringLn("BasicNeMoDemo [" + (rstring)elapsed + "s] Transcription: " + transcription);
+                    } else {
+                        printStringLn("BasicNeMoDemo Transcription: " + transcription);
+                    }
+                }
+        }
+        
+        // Save transcription to distinctly named file
+        () as FileWriter = FileSink(Transcription) {
+            param
+                file: "BasicNeMoDemo_transcript_" + 
+                      ($realtimePlayback ? "realtime_" : "fast_") + 
+                      (rstring)getTimestampInSecs() + ".txt";
+                format: txt;
+        }
+}

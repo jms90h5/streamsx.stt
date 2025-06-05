@@ -1,0 +1,3 @@
+	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/DisplayAnalysis.so -fPIC -shared $(SODisplayAnalysis) $(SPL_LDFLAGS)\
+	    build/operator/DisplayAnalysis.o \
+	    build/type/Bs5pNmw71y7PkapZ9lqBSwKrkbWCriwV7k_0ArlSoM1rLHrNgAEBvk5Tpn6YTnjdDdoEcBr6nreFdzTolVZ3wtD9.o 

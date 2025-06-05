@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<tupleModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/tuple" class="BJnZ5CG7dYuCzMUhZJwzAL3_0GdbQo3dSshe140tlHizvLTKJjeJwGLYVXIY0saSuxtDflHAbgU4Wsd74BTRfIBC" equalitySupported="true" facade="false" splType="tuple&lt;blob audioChunk,uint64 audioTimestamp>" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <headers/>
+  <attributes>
+    <attribute>
+      <name>audioChunk</name>
+      <cppType>SPL::blob</cppType>
+      <splType>blob</splType>
+    </attribute>
+    <attribute>
+      <name>audioTimestamp</name>
+      <cppType>SPL::uint64</cppType>
+      <splType>uint64</splType>
+    </attribute>
+  </attributes>
+</tupleModel>

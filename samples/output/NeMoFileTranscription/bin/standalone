@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ -z "$STREAMS_JAVA_HOME" ]; then
+   echo "STREAMS_JAVA_HOME is not set"
+   exit 1
+fi
+SCRIPT_PATH=`dirname $0`
+$STREAMS_JAVA_HOME/bin/java -jar $SCRIPT_PATH/sab "$@"

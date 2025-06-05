@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="NeMoFileTranscription.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <description>NeMoFileTranscription application set</description>
+  <splApplication adlPath="NeMoFileTranscription/NeMoFileTranscription.adl" applicationDirectory="toolkits/samples" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./NeMoFileTranscription.sab" checkpointDirectory="/homes/jsharpe/teracloud/com.teracloud.streamsx.stt/samples/data/ckpt" name="NeMoFileTranscription" outputDirectory="NeMoFileTranscription" productVersion="7.2.0.0" standaloneApplicationDirectory="toolkits/samples" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="data" type="blob"/>
+        <tuple>
+          <tt:attr name="data" type="blob"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="1">
+        <attribute name="audioChunk" type="blob"/>
+        <attribute name="audioTimestamp" type="uint64"/>
+        <tuple>
+          <tt:attr name="audioChunk" type="blob"/>
+          <tt:attr name="audioTimestamp" type="uint64"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="2">
+        <attribute name="transcription" type="rstring"/>
+        <tuple>
+          <tt:attr name="transcription" type="rstring"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="3">
+        <attribute name="filename" type="rstring"/>
+        <attribute name="transcription" type="rstring"/>
+        <attribute name="wordCount" type="int32"/>
+        <attribute name="charCount" type="int32"/>
+        <attribute name="audioDurationSec" type="float64"/>
+        <attribute name="processingTimeSec" type="float64"/>
+        <attribute name="speedupFactor" type="float64"/>
+        <attribute name="startTime" type="timestamp"/>
+        <attribute name="endTime" type="timestamp"/>
+        <tuple>
+          <tt:attr name="filename" type="rstring"/>
+          <tt:attr name="transcription" type="rstring"/>
+          <tt:attr name="wordCount" type="int32"/>
+          <tt:attr name="charCount" type="int32"/>
+          <tt:attr name="audioDurationSec" type="float64"/>
+          <tt:attr name="processingTimeSec" type="float64"/>
+          <tt:attr name="speedupFactor" type="float64"/>
+          <tt:attr name="startTime" type="timestamp"/>
+          <tt:attr name="endTime" type="timestamp"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="spl.adapter::FileSource" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>0</customMetricIndex>
+          <customMetricIndex>1</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+      <primitiveOperDefinition index="1" kind="spl.utility::Custom" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="2" kind="spl.utility::Throttle" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="3" kind="com.teracloud.streamsx.stt::NeMoSTT" runtimeType="SPL_CPlusPlus" toolkitIndex="2"/>
+      <primitiveOperDefinition index="4" kind="spl.adapter::FileSink" runtimeType="SPL_CPlusPlus" toolkitIndex="1">
+        <customMetricIndicies>
+          <customMetricIndex>2</customMetricIndex>
+          <customMetricIndex>3</customMetricIndex>
+        </customMetricIndicies>
+      </primitiveOperDefinition>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///homes/jsharpe/teracloud/com.teracloud.streamsx.stt/samples/NeMoFileTranscription.spl"/>
+        <uri index="1" path="file:///homes/jsharpe/teracloud/com.teracloud.streamsx.stt/samples/../com.teracloud.streamsx.stt/FileAudioSource.spl"/>
+        <uri index="2" path="file:///homes/jsharpe/teracloud/streams/7.2.0.0/toolkits/spl/spl/Sys.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="147" index="0" kind="NeMoFileTranscription" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="21" toolkitIndex="0">
+          <description>NeMoFileTranscription Composite</description>
+        </compositeOperDefinition>
+        <compositeOperDefinition endLine="67" index="1" kind="com.teracloud.streamsx.stt::FileAudioSource" numberOfInputPorts="0" numberOfOutputPorts="1" sourceIndex="1" startLine="27" toolkitIndex="2">
+          <description>com.teracloud.streamsx.stt::FileAudioSource Composite</description>
+        </compositeOperDefinition>
+        <compositeOperDefinition endLine="256" index="2" kind="spl::Sys" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="2" startLine="20" toolkitIndex="1">
+          <description>spl::Sys Composite</description>
+        </compositeOperDefinition>
+        <compositeOperDefinition endLine="278" index="3" kind="spl::Log" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="2" startLine="262" toolkitIndex="1">
+          <description>spl::Log Composite</description>
+        </compositeOperDefinition>
+        <compositeOperDefinition endLine="301" index="4" kind="spl::Trace" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="2" startLine="283" toolkitIndex="1">
+          <description>spl::Trace Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="147" index="8" name="NeMoFileTranscription" sourceIndex="0" startLine="21">
+          <compositeOperInstance definitionIndex="1" endLine="53" index="9" name="AudioStream" sourceIndex="0" startLine="46">
+            <outputPorts>
+              <port index="0">
+                <incomingConnections>
+                  <connection operIndex="7" operName="AudioStream.AudioStream" portIndex="0" portKind="output"/>
+                </incomingConnections>
+                <outgoingConnections>
+                  <connection operIndex="0" operName="ProcessedAudio" portIndex="0" portKind="input"/>
+                </outgoingConnections>
+              </port>
+            </outputPorts>
+            <primitiveOperInstance definitionIndex="0" endLine="45" index="6" name="AudioStream.RawAudioBlocks" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="1" startLine="40">
+              <outputPorts>
+                <port encoding="LE" index="0" isMutable="true" name="RawAudioBlocks" streamName="AudioStream.RawAudioBlocks" transport="TCP" tupleTypeIndex="0" viewable="true">
+                  <connections>
+                    <connection operIndex="7" operName="AudioStream.AudioStream" portIndex="0" portKind="input"/>
+                  </connections>
+                </port>
+              </outputPorts>
+              <envVars/>
+              <resources>
+                <poolLocation poolIndex="0"/>
+              </resources>
+              <runtimeConstants>
+                <runtimeConstant defaultValue="&quot;/homes/jsharpe/teracloud/com.teracloud.streamsx.stt/test_data/audio/11-ibm-culture-2min-16k.wav&quot;" name="lit$0" submissionTimeValueIndex="0" value="&quot;/homes/jsharpe/teracloud/com.teracloud.streamsx.stt/test_data/audio/11-ibm-culture-2min-16k.wav&quot;"/>
+                <runtimeConstant name="lit$1" value="32768"/>
+              </runtimeConstants>
+              <sharedObject class="AudioStream::RawAudioBlocks">
+                <wrapper>none</wrapper>
+                <uri>bin/AudioStream.RawAudioBlocks.so</uri>
+              </sharedObject>
+              <tracing level="error"/>
+            </primitiveOperInstance>
+            <primitiveOperInstance definitionIndex="1" endLine="66" index="7" name="AudioStream.AudioStream" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="1" startLine="48">
+              <splAnnotation internal="true" tag="logicClause">
+                <value key="hasState" type="boolean">true</value>
+                <value key="hasOnProcess" type="boolean">false</value>
+                <value key="hasOnTuple" type="boolean">true</value>
+                <value key="hasOnPunct" type="boolean">false</value>
+              </splAnnotation>
+              <inputPorts>
+                <port encoding="LE" index="0" isMutable="true" name="RawAudioBlocks" transport="TCP" tupleTypeIndex="0">
+                  <connections>
+                    <connection operIndex="6" operName="AudioStream.RawAudioBlocks" portIndex="0" portKind="output"/>
+                  </connections>
+                </port>
+              </inputPorts>
+              <outputPorts>
+                <port encoding="LE" index="0" isMutable="true" name="AudioStream" streamName="AudioStream" transport="TCP" tupleTypeIndex="1" viewable="true">
+                  <connections>
+                    <connection operIndex="9" operName="AudioStream" portIndex="0" portKind="output"/>
+                  </connections>
+                </port>
+              </outputPorts>
+              <envVars/>
+              <resources>
+                <poolLocation poolIndex="0"/>
+              </resources>
+              <runtimeConstants>
+                <runtimeConstant name="lit$0" value="16000"/>
+                <runtimeConstant name="lit$1" value="1000"/>
+                <runtimeConstant name="lit$2" value="0"/>
+                <runtimeConstant name="lit$3" value="0"/>
+                <runtimeConstant name="lit$4" value="2"/>
+                <runtimeConstant name="lit$5" value="32768"/>
+              </runtimeConstants>
+              <sharedObject class="AudioStream::AudioStream">
+                <wrapper>none</wrapper>
+                <uri>bin/AudioStream.AudioStream.so</uri>
+              </sharedObject>
+              <tracing level="error"/>
+            </primitiveOperInstance>
+          </compositeOperInstance>
+          <primitiveOperInstance definitionIndex="2" endLine="60" index="0" name="ProcessedAudio" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="56">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="AudioStream" transport="TCP" tupleTypeIndex="1">
+                <connections>
+                  <connection operIndex="9" operName="AudioStream" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="ProcessedAudio" streamName="ProcessedAudio" transport="TCP" tupleTypeIndex="1" viewable="true">
+                <connections>
+                  <connection operIndex="1" operName="NeMoOut" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant defaultValue="&quot;false&quot;" name="lit$0" submissionTimeValueIndex="1" value="&quot;false&quot;"/>
+              <runtimeConstant name="lit$1" value="1000000"/>
+              <runtimeConstant name="lit$2" value="0.9765625"/>
+            </runtimeConstants>
+            <sharedObject class="ProcessedAudio">
+              <wrapper>none</wrapper>
+              <uri>bin/ProcessedAudio.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="3" endLine="67" index="1" name="NeMoOut" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="63">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="ProcessedAudio" transport="TCP" tupleTypeIndex="1">
+                <connections>
+                  <connection operIndex="0" operName="ProcessedAudio" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="NeMoOut" streamName="NeMoOut" transport="TCP" tupleTypeIndex="2" viewable="true">
+                <connections>
+                  <connection operIndex="2" operName="Analysis" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="NeMoOut">
+              <wrapper>none</wrapper>
+              <uri>bin/NeMoOut.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="113" index="2" name="Analysis" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="70">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">true</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">true</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="NeMoOut" transport="TCP" tupleTypeIndex="2">
+                <connections>
+                  <connection operIndex="1" operName="NeMoOut" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="Analysis" streamName="Analysis" transport="TCP" tupleTypeIndex="3" viewable="true">
+                <connections>
+                  <connection operIndex="3" operName="DisplayAnalysis" portIndex="0" portKind="input"/>
+                  <connection operIndex="4" operName="TranscriptionFile" portIndex="0" portKind="input"/>
+                  <connection operIndex="5" operName="AnalysisCSV" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="0"/>
+              <runtimeConstant name="lit$1" value="&quot; &quot;"/>
+              <runtimeConstant name="lit$2" value="&quot; \t\n&quot;"/>
+              <runtimeConstant name="lit$3" value="&quot; &quot;"/>
+              <runtimeConstant name="lit$4" value="false"/>
+              <runtimeConstant name="lit$5" value="2"/>
+              <runtimeConstant defaultValue="&quot;/homes/jsharpe/teracloud/com.teracloud.streamsx.stt/test_data/audio/11-ibm-culture-2min-16k.wav&quot;" name="lit$6" submissionTimeValueIndex="0" value="&quot;/homes/jsharpe/teracloud/com.teracloud.streamsx.stt/test_data/audio/11-ibm-culture-2min-16k.wav&quot;"/>
+              <runtimeConstant name="lit$7" value="0"/>
+              <runtimeConstant name="lit$8" value="&quot;&quot;"/>
+              <runtimeConstant name="lit$9" value="0"/>
+            </runtimeConstants>
+            <sharedObject class="Analysis">
+              <wrapper>none</wrapper>
+              <uri>bin/Analysis.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="132" index="3" name="DisplayAnalysis" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="116">
+            <splAnnotation internal="true" tag="logicClause">
+              <value key="hasState" type="boolean">false</value>
+              <value key="hasOnProcess" type="boolean">false</value>
+              <value key="hasOnTuple" type="boolean">true</value>
+              <value key="hasOnPunct" type="boolean">false</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isControl="true" isMutable="false" name="Analysis" transport="TCP" tupleTypeIndex="3">
+                <connections>
+                  <connection operIndex="2" operName="Analysis" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;\n=== NeMo CTC File Transcription Analysis ===&quot;"/>
+              <runtimeConstant defaultValue="&quot;false&quot;" name="lit$1" submissionTimeValueIndex="1" value="&quot;false&quot;"/>
+              <runtimeConstant name="lit$2" value="&quot;Fast Processing&quot;"/>
+              <runtimeConstant name="lit$3" value="&quot;1x Realtime Playback&quot;"/>
+              <runtimeConstant name="lit$4" value="&quot;Mode: &quot;"/>
+              <runtimeConstant name="lit$5" value="&quot;File: &quot;"/>
+              <runtimeConstant name="lit$6" value="&quot; seconds&quot;"/>
+              <runtimeConstant name="lit$7" value="&quot;Audio duration: &quot;"/>
+              <runtimeConstant name="lit$8" value="&quot; seconds&quot;"/>
+              <runtimeConstant name="lit$9" value="&quot;Processing time: &quot;"/>
+              <runtimeConstant name="lit$10" value="&quot;x real-time&quot;"/>
+              <runtimeConstant name="lit$11" value="&quot;Speedup: &quot;"/>
+              <runtimeConstant name="lit$12" value="&quot;Word count: &quot;"/>
+              <runtimeConstant name="lit$13" value="&quot;Character count: &quot;"/>
+              <runtimeConstant name="lit$14" value="&quot;\nTranscription:&quot;"/>
+              <runtimeConstant name="lit$15" value="&quot;---&quot;"/>
+              <runtimeConstant name="lit$16" value="&quot;---&quot;"/>
+              <runtimeConstant name="lit$17" value="&quot;Model: nvidia/stt_en_fastconformer_hybrid_large_streaming_multi (CTC)&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="DisplayAnalysis">
+              <wrapper>none</wrapper>
+              <uri>bin/DisplayAnalysis.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="4" endLine="139" index="4" name="TranscriptionFile" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="135">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Analysis" transport="TCP" tupleTypeIndex="3">
+                <connections>
+                  <connection operIndex="2" operName="Analysis" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;.txt&quot;"/>
+              <runtimeConstant name="lit$1" value="&quot;/transcription_&quot;"/>
+              <runtimeConstant defaultValue="&quot;.&quot;" name="lit$2" submissionTimeValueIndex="2" value="&quot;.&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="TranscriptionFile">
+              <wrapper>none</wrapper>
+              <uri>bin/TranscriptionFile.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="4" endLine="146" index="5" name="AnalysisCSV" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="142">
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="Analysis" transport="TCP" tupleTypeIndex="3">
+                <connections>
+                  <connection operIndex="2" operName="Analysis" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;.csv&quot;"/>
+              <runtimeConstant name="lit$1" value="&quot;/analysis_&quot;"/>
+              <runtimeConstant defaultValue="&quot;.&quot;" name="lit$2" submissionTimeValueIndex="2" value="&quot;.&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="AnalysisCSV">
+              <wrapper>none</wrapper>
+              <uri>bin/AnalysisCSV.so</uri>
+            </sharedObject>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="samples" uri="file:///homes/jsharpe/teracloud/com.teracloud.streamsx.stt/samples" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///homes/jsharpe/teracloud/streams/7.2.0.0/toolkits/spl" version="1.4.0"/>
+      <toolkit index="2" name="com.teracloud.streamsx.stt" uri="file:///homes/jsharpe/teracloud/com.teracloud.streamsx.stt" version="1.0.0"/>
+    </toolkits>
+    <customMetrics>
+      <customMetric index="0" kind="Counter" name="nFilesOpened">
+        <description>The number of files opened by the `FileSource` operator.</description>
+      </customMetric>
+      <customMetric index="1" kind="Counter" name="nInvalidTuples">
+        <description>The number of tuples that failed to read correctly in csv or txt format.</description>
+      </customMetric>
+      <customMetric index="2" kind="Counter" name="nFilesOpened">
+        <description>The number of files opened by the `FileSink` operator.</description>
+      </customMetric>
+      <customMetric index="3" kind="Counter" name="nTupleWriteErrors">
+        <description>
+ The number of tuple writes that had an error on the file stream after the write completed. 
+Due to buffering, write failures might not be detected immediately. 
+You can use `param flush : 1u;` to ensure quicker detection, but with a (possibly large) performance penalty. 
+After a failure is detected, all future writes fail unless the error condition is cleared or the file is closed. 
+
+For more information, see the **writeFailureAction** parameter.
+</description>
+      </customMetric>
+    </customMetrics>
+    <submissionTimeValues>
+      <submissionTimeValue compositeName="NeMoFileTranscription" defaultValue="&quot;.&quot;" index="2" kind="named" name="outputDir" required="false"/>
+      <submissionTimeValue compositeName="NeMoFileTranscription" defaultValue="&quot;false&quot;" index="1" kind="named" name="realtimePlayback" required="false"/>
+      <submissionTimeValue compositeName="NeMoFileTranscription" defaultValue="&quot;/homes/jsharpe/teracloud/com.teracloud.streamsx.stt/test_data/audio/11-ibm-culture-2min-16k.wav&quot;" index="0" kind="named" name="audioFile" required="false"/>
+    </submissionTimeValues>
+  </splApplication>
+</applicationSet>

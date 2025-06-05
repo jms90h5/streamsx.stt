@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<tupleModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/tuple" class="B2rNrSkKrWYTTG0yXfkdrUykBA8vL_1Bhn_1bqqbqWmnzNkPmG1aLkG2HTzzPOuq28lNrJgpRUEPHI34Wv5perWBo" equalitySupported="true" facade="false" splType="tuple&lt;rstring transcription,float64 processingTimeMs,float64 audioChunkMs,float64 speedupFactor,int32 chunkNumber>" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <headers/>
+  <attributes>
+    <attribute>
+      <name>transcription</name>
+      <cppType>SPL::rstring</cppType>
+      <splType>rstring</splType>
+    </attribute>
+    <attribute>
+      <name>processingTimeMs</name>
+      <cppType>SPL::float64</cppType>
+      <splType>float64</splType>
+    </attribute>
+    <attribute>
+      <name>audioChunkMs</name>
+      <cppType>SPL::float64</cppType>
+      <splType>float64</splType>
+    </attribute>
+    <attribute>
+      <name>speedupFactor</name>
+      <cppType>SPL::float64</cppType>
+      <splType>float64</splType>
+    </attribute>
+    <attribute>
+      <name>chunkNumber</name>
+      <cppType>SPL::int32</cppType>
+      <splType>int32</splType>
+    </attribute>
+  </attributes>
+</tupleModel>
