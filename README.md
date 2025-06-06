@@ -38,15 +38,27 @@ source $STREAMS_INSTALL/bin/streamsprofile.sh
 cd /path/to/com.teracloud.streamsx.stt
 ```
 
-### Step 2: Export NeMo Model (One-time Setup)
+### Step 2: Obtain ONNX Model (One-time Setup)
+
+**⚠️ REQUIRED**: The large ONNX model file (438MB) is not included in the Git repository and must be obtained separately.
+
+**Option A: Generate Model (Recommended)**
 ```bash
-# Install Python dependencies
+# Install Python dependencies (requires ~16GB RAM and internet)
 pip install -r requirements.txt
 
-# Download and export model to ONNX format
+# Download and export model to ONNX format (~5-10 minutes)
 python export_model_ctc.py
+# Downloads from HuggingFace: nvidia/stt_en_fastconformer_hybrid_large_streaming_multi
 # Creates: models/fastconformer_ctc_export/model.onnx (438MB)
-# Creates: models/fastconformer_ctc_export/tokens.txt (vocabulary)
+# Vocabulary file already included: models/fastconformer_ctc_export/tokens.txt ✅
+```
+
+**Option B: Obtain Pre-exported Model**
+```bash
+# If available from your team's shared storage:
+# Copy model.onnx to: models/fastconformer_ctc_export/model.onnx
+# Vocabulary file already included in repository ✅
 ```
 
 ### Step 3: Build Toolkit
@@ -251,9 +263,10 @@ com.teracloud.streamsx.stt/
 # 1. Install Python dependencies
 pip install -r requirements.txt
 
-# 2. Export NeMo model to ONNX (one-time setup)
+# 2. Generate ONNX model (one-time setup, requires internet + ~16GB RAM)
 python export_model_ctc.py
-# Verify: ls -la models/fastconformer_ctc_export/
+# Downloads and exports: nvidia/stt_en_fastconformer_hybrid_large_streaming_multi
+# Verify: ls -la models/fastconformer_ctc_export/model.onnx
 
 # 3. Build C++ interface library
 cd impl
@@ -314,9 +327,26 @@ export LD_LIBRARY_PATH=/path/to/com.teracloud.streamsx.stt/deps/onnxruntime/lib:
 
 ## Model Distribution
 
-Large model files (>100MB) are excluded from the git repository. To obtain models:
-1. Run the export script: `python export_nemo_ctc_simple.py`
-2. Or download pre-exported models from your team's model repository
+The large ONNX model file (438MB) is excluded from the Git repository due to size constraints. 
+
+### Required Model File
+- **File**: `models/fastconformer_ctc_export/model.onnx` (438MB)
+- **Vocabulary**: `models/fastconformer_ctc_export/tokens.txt` ✅ **Included in repository**
+
+### How to Obtain the Model
+
+**Method 1: Generate from Source (Recommended)**
+```bash
+python export_model_ctc.py
+```
+- Downloads nvidia/stt_en_fastconformer_hybrid_large_streaming_multi from HuggingFace
+- Requires: Internet connection, ~16GB RAM, 5-10 minutes
+- Creates the 438MB ONNX model file locally
+
+**Method 2: Copy Pre-exported Model**
+- If your team has a shared model repository
+- Copy `model.onnx` to `models/fastconformer_ctc_export/`
+- Vocabulary file already included in Git repository
 
 ## License
 

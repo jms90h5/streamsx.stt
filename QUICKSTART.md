@@ -23,10 +23,22 @@ export STREAMS_INSTALL=/path/to/streams/7.2.0.0
 source $STREAMS_INSTALL/bin/streamsprofile.sh
 ```
 
-### 3. Download Model (One-time, ~5 minutes)
+### 3. Get Required Model (One-time, ~5 minutes)
+
+**⚠️ Required**: The 438MB ONNX model is not in Git and must be obtained:
+
 ```bash
+# Install dependencies (requires ~16GB RAM + internet)
 pip install -r requirements.txt
+
+# Download and export model from HuggingFace
 python export_model_ctc.py
+# Creates: models/fastconformer_ctc_export/model.onnx (438MB)
+# Vocabulary already included: models/fastconformer_ctc_export/tokens.txt ✅
+
+# Verify model exists
+ls -lh models/fastconformer_ctc_export/model.onnx
+# Should show: ~438MB file
 ```
 
 ### 4. Build Toolkit (~2 minutes)
