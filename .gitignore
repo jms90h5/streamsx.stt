@@ -4,9 +4,16 @@ impl/lib/
 toolkit.xml
 
 # Sample build outputs
+samples/output/
 samples/*/output/
 samples/*/*.sab
 samples/*/*.adl
+*.so
+*.o
+*.d
+samples/output/*/build/
+samples/output/*/bin/
+samples/output/*/data/
 
 # Temporary files
 *.log
