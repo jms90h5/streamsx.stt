@@ -1,0 +1,9 @@
+NeMo FastConformer Proven Solution Result
+Model: stt_en_fastconformer_hybrid_large_streaming_multi
+Audio: test_data/audio/librispeech-1995-1837-0001.wav
+Method: Direct model.transcribe() API (proven working)
+Processing time: 0.58s
+Real-time factor: 1.00x
+============================================================
+
+it was the first great sorrow of his life it was not so much the loss of the cotton itself but the fantasy the hopes the dreams built around it

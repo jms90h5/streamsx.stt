@@ -1,0 +1,1772 @@
+=== NeMo Cache-Aware Conformer Standalone Test ===
+
+Configuration:
+  NeMo model: models/nemo_fastconformer_streaming/conformer_ctc_dynamic.onnx
+  Audio file: test_data/audio/11-ibm-culture-2min-16k.raw
+  VAD enabled: yes
+  Chunk size: 160ms
+  Sample rate: 16000Hz
+
+Loading audio file...
+Loaded audio file: test_data/audio/11-ibm-culture-2min-16k.raw
+  Size: 4417828 bytes
+  Samples: 2208914
+  Duration: 138.057 seconds
+
+Initializing NeMo pipeline...
+Failed to load Silero VAD model: Load model from ../models/silero_vad.onnx failed:Load model ../models/silero_vad.onnx failed. File doesn't exist
+Warning: Could not load Silero VAD model from ../models/silero_vad.onnx. VAD will be disabled.
+Silero VAD not available, using energy-based VAD
+Info: Kaldifeat not available, falling back to simple_fbank
+Creating model of type: 4
+Initializing NeMo Cache-Aware Conformer model...
+Model path: models/nemo_fastconformer_streaming/conformer_ctc_dynamic.onnx
+Chunk frames: 160
+Attention context: [70,0]
+Model loaded: 1 inputs, 1 outputs
+Input 0: audio_signal shape: [-1,-1,80]
+Cache tensors initialized:
+  Channel cache size: 393216 elements
+  Time cache size: 393216 elements
+NeMo Cache-Aware Conformer initialized successfully
+STTPipeline initialized successfully
+  VAD: enabled
+  Feature extractor: kaldifeat
+  Model: 4
+NeMo pipeline created successfully
+NeMo pipeline initialized successfully!
+
+Processing parameters:
+  Chunk samples: 2560
+  Total chunks: 863
+
+=== Processing Audio ===
+[0ms] [SILENCE]  (conf: 0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[160ms] [SILENCE]  (conf: 0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[320ms] [SILENCE]  (conf: 0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[480ms] [SILENCE]  (conf: 0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[640ms] [SILENCE]  (conf: 0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[800ms] [SILENCE]  (conf: 0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[960ms] [SILENCE]  (conf: 0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[1120ms] [SILENCE]  (conf: 0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[1280ms] [SILENCE]  (conf: 0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[1440ms] [SILENCE]  (conf: 0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[1600ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:8ms TOTAL:8ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[1760ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:5ms TOTAL:5ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[1920ms] [SILENCE] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[2080ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[2240ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[2400ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[2560ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[2720ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[2880ms] [SILENCE] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[3040ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[3200ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[3360ms] [SILENCE] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[3520ms] [SILENCE] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[3680ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[3840ms] [SILENCE] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[4000ms] [SILENCE] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[4160ms] [SILENCE] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+[4320ms] [SILENCE]  (conf: 0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[4480ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[4640ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[4800ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[4960ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[5120ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[5280ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[5440ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[5600ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[5760ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[5920ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[6080ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[6240ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[6400ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[6560ms] [SILENCE] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[6720ms] [SILENCE] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[6880ms] [SILENCE] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+[7040ms] [SILENCE]  (conf: 0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[7200ms] [SILENCE]  (conf: 0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[7360ms] [SILENCE]  (conf: 0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[7520ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[7680ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[7840ms] [SPEECH] [NeMo CTC: 95] (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 50/863 (5.8%)
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[8000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[8160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:5ms TOTAL:5ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[8320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:5ms TOTAL:5ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[8480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[8640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[8800ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[8960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[9120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[9280ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[9440ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[9600ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[9760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[9920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[10080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[10240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[10400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[10560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[10720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[10880ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[11040ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[11200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[11360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[11520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[11680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[11840ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[12000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[12160ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[12320ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[12480ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+[12640ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[12800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[12960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[13120ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[13280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[13440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[13600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[13760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[13920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[14080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[14240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[14400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[14560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[14720ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[14880ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[15040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[15200ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[15360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[15520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[15680ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[15840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 100/863 (11.6%)
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[16000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[16160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[16320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[16480ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[16640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[16800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[16960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[17120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[17280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[17440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[17600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[17760ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[17920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[18080ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[18240ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[18400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[18560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[18720ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[18880ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[19040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[19200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[19360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[19520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[19680ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[19840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[20000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[20160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[20320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[20480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[20640ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[20800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[20960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[21120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[21280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[21440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[21600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[21760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[21920ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[22080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[22240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[22400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[22560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[22720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[22880ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[23040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[23200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[23360ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[23520ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[23680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[23840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 150/863 (17.4%)
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[24000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[24160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[24320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[24480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[24640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[24800ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[24960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[25120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[25280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[25440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[25600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[25760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[25920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[26080ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[26240ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[26400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[26560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[26720ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[26880ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[27040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[27200ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[27360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[27520ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[27680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[27840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[28000ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[28160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[28320ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[28480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[28640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[28800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[28960ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[29120ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[29280ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[29440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[29600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[29760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[29920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[30080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[30240ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[30400ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[30560ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[30720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[30880ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[31040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[31200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[31360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[31520ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[31680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[31840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 200/863 (23.2%)
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[32000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[32160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[32320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[32480ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[32640ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[32800ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[32960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[33120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[33280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[33440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[33600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[33760ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[33920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[34080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[34240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[34400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[34560ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[34720ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[34880ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[35040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[35200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[35360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[35520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[35680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[35840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[36000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[36160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[36320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[36480ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[36640ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[36800ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[36960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[37120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[37280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[37440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[37600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[37760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[37920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[38080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[38240ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[38400ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[38560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[38720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[38880ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[39040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[39200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:10ms TOTAL:10ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[39360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:6ms TOTAL:6ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[39520ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[39680ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[39840ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 250/863 (29.0%)
+[40000ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[40160ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[40320ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[40480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[40640ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[40800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[40960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[41120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[41280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[41440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[41600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[41760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[41920ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[42080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[42240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[42400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[42560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[42720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[42880ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[43040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[43200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[43360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[43520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[43680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[43840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[44000ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[44160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[44320ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[44480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[44640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[44800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[44960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[45120ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[45280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[45440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[45600ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:5ms TOTAL:5ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[45760ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[45920ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+[46080ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[46240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[46400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[46560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[46720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[46880ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[47040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[47200ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[47360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[47520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[47680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[47840ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 300/863 (34.8%)
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[48000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[48160ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[48320ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[48480ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[48640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[48800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[48960ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[49120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[49280ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[49440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[49600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[49760ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[49920ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[50080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[50240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[50400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[50560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[50720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[50880ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[51040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[51200ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[51360ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[51520ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[51680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[51840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[52000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[52160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[52320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[52480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[52640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[52800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[52960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[53120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[53280ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[53440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[53600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[53760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[53920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[54080ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[54240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[54400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[54560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[54720ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[54880ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[55040ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+[55200ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[55360ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[55520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[55680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[55840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 350/863 (40.6%)
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[56000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[56160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[56320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[56480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[56640ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[56800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[56960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[57120ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[57280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[57440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[57600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[57760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[57920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[58080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[58240ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[58400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[58560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[58720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[58880ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[59040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[59200ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[59360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[59520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[59680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[59840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[60000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[60160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[60320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[60480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[60640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[60800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[60960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[61120ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[61280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[61440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[61600ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[61760ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[61920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[62080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[62240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[62400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[62560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[62720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[62880ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[63040ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[63200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[63360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[63520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[63680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[63840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 400/863 (46.3%)
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[64000ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:5ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[64160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[64320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[64480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[64640ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[64800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[64960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[65120ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[65280ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:5ms TOTAL:5ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[65440ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[65600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[65760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[65920ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[66080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[66240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[66400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[66560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[66720ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[66880ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[67040ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+[67200ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[67360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[67520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[67680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[67840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[68000ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[68160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[68320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[68480ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[68640ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[68800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[68960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[69120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[69280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[69440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[69600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[69760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[69920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[70080ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[70240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[70400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[70560ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[70720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[70880ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[71040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[71200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[71360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[71520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[71680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[71840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 450/863 (52.1%)
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[72000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[72160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[72320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[72480ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[72640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[72800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[72960ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[73120ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[73280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[73440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[73600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[73760ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[73920ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[74080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[74240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[74400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[74560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[74720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[74880ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[75040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[75200ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[75360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[75520ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[75680ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[75840ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+[76000ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[76160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[76320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[76480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[76640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[76800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[76960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[77120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[77280ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[77440ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[77600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[77760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[77920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[78080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[78240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[78400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[78560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[78720ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[78880ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[79040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[79200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[79360ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[79520ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[79680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[79840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 500/863 (57.9%)
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[80000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[80160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[80320ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[80480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[80640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[80800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[80960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[81120ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[81280ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[81440ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+[81600ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[81760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[81920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[82080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[82240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[82400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[82560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[82720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[82880ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[83040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[83200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[83360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[83520ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[83680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[83840ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[84000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[84160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[84320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[84480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[84640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[84800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[84960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[85120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[85280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[85440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[85600ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[85760ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[85920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[86080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[86240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[86400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[86560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[86720ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[86880ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[87040ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[87200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[87360ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[87520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[87680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[87840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 550/863 (63.7%)
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[88000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[88160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[88320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[88480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[88640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[88800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[88960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[89120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[89280ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[89440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[89600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[89760ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[89920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[90080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[90240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[90400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[90560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[90720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[90880ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[91040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[91200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[91360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[91520ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[91680ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[91840ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[92000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[92160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[92320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[92480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[92640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[92800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[92960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[93120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[93280ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[93440ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[93600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[93760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[93920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[94080ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[94240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[94400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[94560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[94720ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[94880ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[95040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[95200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[95360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[95520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[95680ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[95840ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 600/863 (69.5%)
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[96000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[96160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[96320ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[96480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[96640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[96800ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[96960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[97120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[97280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[97440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[97600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[97760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[97920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[98080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[98240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[98400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[98560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[98720ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[98880ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[99040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[99200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[99360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[99520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[99680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[99840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[100000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[100160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[100320ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[100480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[100640ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[100800ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[100960ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[101120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[101280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[101440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[101600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[101760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[101920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[102080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[102240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[102400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[102560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[102720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[102880ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[103040ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[103200ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+[103360ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[103520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[103680ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[103840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 650/863 (75.3%)
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[104000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[104160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[104320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[104480ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[104640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[104800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[104960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[105120ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[105280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[105440ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[105600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[105760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[105920ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[106080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[106240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[106400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[106560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[106720ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[106880ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[107040ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+[107200ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[107360ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[107520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[107680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[107840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[108000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[108160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[108320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[108480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[108640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[108800ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[108960ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[109120ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[109280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[109440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[109600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[109760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[109920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[110080ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[110240ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[110400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[110560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[110720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[110880ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[111040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[111200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[111360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[111520ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[111680ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[111840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 700/863 (81.1%)
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[112000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[112160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[112320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[112480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[112640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[112800ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[112960ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[113120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[113280ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[113440ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[113600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[113760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[113920ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[114080ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[114240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[114400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[114560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[114720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[114880ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[115040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[115200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[115360ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[115520ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[115680ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[115840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[116000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[116160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[116320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[116480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[116640ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[116800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[116960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[117120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[117280ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[117440ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[117600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[117760ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[117920ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[118080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[118240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[118400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[118560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[118720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[118880ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[119040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[119200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[119360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[119520ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[119680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[119840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 750/863 (86.9%)
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[120000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[120160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[120320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[120480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[120640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:5ms TOTAL:5ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[120800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:5ms TOTAL:5ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[120960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[121120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[121280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[121440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[121600ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[121760ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[121920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[122080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[122240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[122400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[122560ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[122720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[122880ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[123040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[123200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[123360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[123520ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[123680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[123840ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[124000ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[124160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[124320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[124480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[124640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[124800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[124960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[125120ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[125280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[125440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[125600ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[125760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[125920ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[126080ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[126240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[126400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[126560ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[126720ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[126880ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[127040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[127200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[127360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[127520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[127680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[127840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 800/863 (92.7%)
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[128000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[128160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[128320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[128480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[128640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[128800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[128960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[129120ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[129280ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[129440ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[129600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[129760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[129920ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[130080ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[130240ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[130400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[130560ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[130720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[130880ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[131040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[131200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[131360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[131520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[131680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[131840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[132000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[132160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[132320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[132480ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[132640ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[132800ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[132960ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[133120ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[133280ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[133440ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[133600ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:3ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[133760ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[133920ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:3ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[134080ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[134240ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[134400ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[134560ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[134720ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[134880ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[135040ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[135200ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[135360ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[135520ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[135680ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[135840ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 850/863 (98.5%)
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[136000ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[136160ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[136320ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[136480ms] [SPEECH] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[136640ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[136800ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+[136960ms] [SILENCE] [NeMo CTC: 95] (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+[137120ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[137280ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[137440ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[137600ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[137760ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+[137920ms] [SILENCE]  (conf: 0.0%) [VAD:0ms FE:0ms MODEL:0ms TOTAL:0ms]
+Progress: 863/863 (100.0%)
+
+=== Performance Summary ===
+Total processing time: 3602ms
+Audio duration: 138057.1ms
+Real-time factor: 0.0
+Speech chunks: 612 (70.9%)
+Silence chunks: 251 (29.1%)
+Average latency: 3ms
+Latency range: 0-10ms
+
+Pipeline Statistics:
+  Total chunks processed: 863
+  Average VAD latency: 0.0ms
+  Average feature latency: 0.0ms
+  Average model latency: 3.8ms
+  Real-time factor: 0.0
+
+=== Test Completed Successfully ===

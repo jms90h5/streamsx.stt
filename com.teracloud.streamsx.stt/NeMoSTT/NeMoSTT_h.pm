@@ -15,7 +15,7 @@ sub main::generate($$) {
    print "\n";
    print "\n";
    print '/* Additional includes for NeMoSTT operator */', "\n";
-   print '#include <NeMoSTTWrapper.hpp>', "\n";
+   print '#include <NeMoCTCInterface.hpp>', "\n";
    print '#include <vector>', "\n";
    print '#include <memory>', "\n";
    print "\n";
@@ -35,15 +35,16 @@ sub main::generate($$) {
    print '    void process(Punctuation const & punct, uint32_t port);', "\n";
    print '    ', "\n";
    print 'private:', "\n";
-   print '    // NeMo STT implementation', "\n";
-   print '    std::unique_ptr<com::teracloud::streams::stt::NeMoSTTWrapper> nemoSTT_;', "\n";
+   print '    // NeMo CTC implementation', "\n";
+   print '    std::unique_ptr<NeMoCTCInterface> nemoSTT_;', "\n";
    print '    ', "\n";
    print '    // Audio parameters', "\n";
    print '    int sampleRate_;', "\n";
    print '    int channels_;', "\n";
    print '    ', "\n";
-   print '    // Model path', "\n";
+   print '    // Model and tokens paths', "\n";
    print '    std::string modelPath_;', "\n";
+   print '    std::string tokensPath_;', "\n";
    print '    ', "\n";
    print '    // Configuration', "\n";
    print '    int chunkDurationMs_;', "\n";
@@ -53,9 +54,7 @@ sub main::generate($$) {
    print '    std::vector<float> audioBuffer_;', "\n";
    print '    ', "\n";
    print '    // Helper methods', "\n";
-   print '    void processAudioData(const void* data, size_t bytes, int bitsPerSample);', "\n";
    print '    void outputTranscription(const std::string& text);', "\n";
-   print '    int getSampleRate() const;', "\n";
    print '}; ', "\n";
    print "\n";
    SPL::CodeGen::headerEpilogue($model);

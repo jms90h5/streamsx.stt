@@ -1,0 +1,71 @@
+# Makefile for the Proven NeMo STT C++ implementation
+# Based on validated working models and proven approach
+
+# ONNX Runtime location
+ONNX_LOCAL := ../deps/onnxruntime
+ifneq ($(wildcard $(ONNX_LOCAL)/lib/libonnxruntime.so),)
+    ONNXRUNTIME_ROOT := $(ONNX_LOCAL)
+else
+    ifneq ($(wildcard /usr/local/lib/libonnxruntime.so),)
+        ONNXRUNTIME_ROOT := /usr/local
+    else ifneq ($(wildcard /usr/lib/libonnxruntime.so),)
+        ONNXRUNTIME_ROOT := /usr
+    else
+        $(error ONNX Runtime not found. Run setup_onnx_runtime.sh first)
+    endif
+endif
+
+# Compiler settings
+CXX := g++
+CXXFLAGS := -O3 -std=c++14 -fPIC -Wall -Wextra
+
+# Include paths
+CXXFLAGS += -Iinclude
+CXXFLAGS += -I$(ONNXRUNTIME_ROOT)/include
+
+# Linker flags
+LDFLAGS += -L$(ONNXRUNTIME_ROOT)/lib
+LDFLAGS += -lonnxruntime
+LDFLAGS += -lsndfile
+LDFLAGS += -ldl
+LDFLAGS += -Wl,-rpath,'$$ORIGIN'
+LDFLAGS += -Wl,-rpath,'$$ORIGIN/../lib'
+LDFLAGS += -Wl,-rpath,$(ONNXRUNTIME_ROOT)/lib
+
+# Source files for proven implementation
+PROVEN_SOURCES = src/ProvenNeMoSTT.cpp src/ProvenFeatureExtractor.cpp
+BUILD_DIR = build
+PROVEN_OBJECTS = $(PROVEN_SOURCES:src/%.cpp=$(BUILD_DIR)/%.o)
+
+# Targets
+LIB_PROVEN = lib/libproven_nemo_stt.so
+TEST_PROVEN = test_proven_cpp_implementation
+
+all: $(LIB_PROVEN) $(TEST_PROVEN)
+
+# Build proven library
+$(LIB_PROVEN): $(PROVEN_OBJECTS) | lib
+	$(CXX) -shared $(LDFLAGS) -o $@ $^
+
+# Build test executable
+$(TEST_PROVEN): test_proven_cpp_implementation.cpp $(LIB_PROVEN) | $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -o $@ $< -L./lib -lproven_nemo_stt $(LDFLAGS)
+
+# Create directories
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+lib:
+	mkdir -p lib
+
+# Compile source files to build directory
+$(BUILD_DIR)/%.o: src/%.cpp | $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+clean:
+	rm -rf $(BUILD_DIR) lib/libproven_nemo_stt.so $(TEST_PROVEN)
+
+test: $(TEST_PROVEN)
+	./$(TEST_PROVEN)
+
+.PHONY: all clean test

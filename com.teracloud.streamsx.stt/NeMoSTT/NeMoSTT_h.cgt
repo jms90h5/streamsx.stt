@@ -7,7 +7,7 @@
 %>
 
 /* Additional includes for NeMoSTT operator */
-#include <NeMoSTTWrapper.hpp>
+#include <NeMoCTCInterface.hpp>
 #include <vector>
 #include <memory>
 
@@ -26,15 +26,16 @@ public:
     void process(Punctuation const & punct, uint32_t port);
     
 private:
-    // NeMo STT implementation
-    std::unique_ptr<com::teracloud::streams::stt::NeMoSTTWrapper> nemoSTT_;
+    // NeMo CTC implementation
+    std::unique_ptr<NeMoCTCInterface> nemoSTT_;
     
     // Audio parameters
     int sampleRate_;
     int channels_;
     
-    // Model path
+    // Model and tokens paths
     std::string modelPath_;
+    std::string tokensPath_;
     
     // Configuration
     int chunkDurationMs_;
@@ -44,9 +45,7 @@ private:
     std::vector<float> audioBuffer_;
     
     // Helper methods
-    void processAudioData(const void* data, size_t bytes, int bitsPerSample);
     void outputTranscription(const std::string& text);
-    int getSampleRate() const;
 }; 
 
 <%SPL::CodeGen::headerEpilogue($model);%>

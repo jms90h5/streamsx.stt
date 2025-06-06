@@ -1,0 +1,66 @@
+# Makefile for NeMo CTC with Kaldi Feature Extraction
+
+CXX = g++
+CXXFLAGS = -std=c++17 -O2 -Wall -Wextra
+
+# Directories
+ONNX_DIR = $(PWD)/deps/onnxruntime
+KALDI_DIR = $(PWD)/deps/kaldi-native-fbank
+IMPL_DIR = impl
+
+# Include paths
+INCLUDES = -I$(ONNX_DIR)/include \
+           -I$(KALDI_DIR)/include \
+           -I$(IMPL_DIR)/include \
+           -I$(IMPL_DIR)/src
+
+# Library paths and libraries
+LIBS = -L$(ONNX_DIR)/lib -lonnxruntime \
+       -L$(KALDI_DIR)/lib -lkaldi-native-fbank-core
+
+# Source files
+SOURCES = $(IMPL_DIR)/include/NeMoCTCImpl.cpp \
+          $(IMPL_DIR)/src/KaldiFbankFeatureExtractor.cpp \
+          test_nemo_ctc_cpp.cpp
+
+# Object files
+OBJECTS = $(IMPL_DIR)/include/NeMoCTCImpl.o \
+          $(IMPL_DIR)/src/KaldiFbankFeatureExtractor.o \
+          test_nemo_ctc_cpp.o
+
+# Target executable
+TARGET = test_nemo_ctc_kaldi
+
+.PHONY: all clean
+
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CXX) $(OBJECTS) -o $(TARGET) $(LIBS)
+
+$(IMPL_DIR)/include/NeMoCTCImpl.o: $(IMPL_DIR)/include/NeMoCTCImpl.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+$(IMPL_DIR)/src/KaldiFbankFeatureExtractor.o: $(IMPL_DIR)/src/KaldiFbankFeatureExtractor.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+test_nemo_ctc_cpp.o: test_nemo_ctc_cpp.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+clean:
+	rm -f $(OBJECTS) $(TARGET)
+
+test: $(TARGET)
+	export LD_LIBRARY_PATH=$(ONNX_DIR)/lib:$(KALDI_DIR)/lib:$$LD_LIBRARY_PATH && \
+	./$(TARGET) test_data/audio/librispeech-1995-1837-0001.wav
+
+info:
+	@echo "Build configuration:"
+	@echo "  ONNX Runtime: $(ONNX_DIR)"
+	@echo "  Kaldi Fbank: $(KALDI_DIR)"
+	@echo "  Target: $(TARGET)"
+	@echo ""
+	@echo "Usage:"
+	@echo "  make -f Makefile.kaldi        # Build"
+	@echo "  make -f Makefile.kaldi test   # Build and test"
+	@echo "  make -f Makefile.kaldi clean  # Clean build files"

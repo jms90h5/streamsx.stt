@@ -1,0 +1,452 @@
+=== NeMo Cache-Aware FastConformer-Hybrid Test ===
+Testing solution for 'sh sh sh' repetition issue
+Loaded audio: test_data/audio/librispeech-1995-1837-0001.raw
+  Samples: 139680
+  Duration: 8.73 seconds
+
+Initializing NeMo dual model...
+Initializing NeMo FastConformer-Hybrid dual model...
+Encoder model: models/nemo_fresh_export/encoder-fastconformer_cache_final.onnx
+Decoder model: models/nemo_fresh_export/decoder_joint-fastconformer_cache_final.onnx
+Chunk frames: 11
+Attention context: [70,0]
+Cache enabled: yes
+Loading encoder model...
+Loading decoder model...
+Encoder loaded: 5 inputs, 5 outputs
+Decoder loaded: 5 inputs, 4 outputs
+=== Encoder Model Info ===
+Encoder Input 0: audio_signal shape: [-1,80,-1]
+Encoder Input 1: length shape: [-1]
+Encoder Input 2: cache_last_channel shape: [-1,17,-1,512]
+Encoder Input 3: cache_last_time shape: [-1,17,512,-1]
+Encoder Input 4: cache_last_channel_len shape: [-1]
+=== Decoder Model Info ===
+Decoder Input 0: encoder_outputs shape: [-1,512,-1]
+Decoder Input 1: targets shape: [-1,-1]
+Decoder Input 2: target_length shape: [-1]
+Decoder Input 3: input_states_1 shape: [1,-1,640]
+Decoder Input 4: input_states_2 shape: [1,-1,640]
+Cache tensors initialized:
+  Channel cache size: 174080 elements
+  Time cache size: 617984 elements
+  Length cache size: 17 elements
+Decoder state initialized (will be sized on first inference)
+NeMo Cache-Aware Conformer initialized successfully
+
+Initializing feature extractor...
+ImprovedFbank initialized:
+  Sample rate: 16000 Hz
+  Frame length: 400 samples (25ms)
+  Frame shift: 160 samples (10ms)
+  Mel bins: 80
+  FFT size: 512
+
+=== Processing Audio ===
+2025-06-01 16:50:14.936502529 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[0ms]  (latency: 3ms)
+2025-06-01 16:50:14.956038213 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[110ms]  (latency: 2ms)
+2025-06-01 16:50:14.975011993 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[220ms]  (latency: 2ms)
+2025-06-01 16:50:14.993884515 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[330ms]  (latency: 2ms)
+2025-06-01 16:50:15.013008335 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[440ms]  (latency: 2ms)
+2025-06-01 16:50:15.031512919 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[550ms]  (latency: 2ms)
+2025-06-01 16:50:15.050212018 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[660ms]  (latency: 2ms)
+2025-06-01 16:50:15.068886613 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[770ms]  (latency: 2ms)
+2025-06-01 16:50:15.087494004 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[880ms]  (latency: 2ms)
+2025-06-01 16:50:15.106366150 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[990ms]  (latency: 2ms)
+2025-06-01 16:50:15.125384955 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[1100ms]  (latency: 2ms)
+2025-06-01 16:50:15.144123155 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[1210ms]  (latency: 2ms)
+2025-06-01 16:50:15.162819012 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[1320ms]  (latency: 2ms)
+2025-06-01 16:50:15.181363424 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[1430ms]  (latency: 2ms)
+2025-06-01 16:50:15.200322813 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[1540ms]  (latency: 2ms)
+2025-06-01 16:50:15.218832027 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[1650ms]  (latency: 1ms)
+2025-06-01 16:50:15.236921547 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[1760ms]  (latency: 1ms)
+2025-06-01 16:50:15.255557381 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[1870ms]  (latency: 2ms)
+2025-06-01 16:50:15.274002164 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[1980ms]  (latency: 2ms)
+2025-06-01 16:50:15.292806855 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[2090ms]  (latency: 2ms)
+2025-06-01 16:50:15.311651496 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[2200ms]  (latency: 2ms)
+2025-06-01 16:50:15.330135553 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[2310ms]  (latency: 2ms)
+2025-06-01 16:50:15.348769916 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[2420ms]  (latency: 2ms)
+2025-06-01 16:50:15.367481301 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[2530ms]  (latency: 2ms)
+2025-06-01 16:50:15.386238580 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[2640ms]  (latency: 2ms)
+2025-06-01 16:50:15.405186182 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[2750ms]  (latency: 2ms)
+2025-06-01 16:50:15.423754978 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[2860ms]  (latency: 2ms)
+2025-06-01 16:50:15.442389066 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[2970ms]  (latency: 2ms)
+2025-06-01 16:50:15.461001915 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[3080ms]  (latency: 2ms)
+2025-06-01 16:50:15.479788486 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[3190ms]  (latency: 2ms)
+2025-06-01 16:50:15.498661783 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[3300ms]  (latency: 2ms)
+2025-06-01 16:50:15.516818712 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[3410ms]  (latency: 2ms)
+2025-06-01 16:50:15.535491758 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[3520ms]  (latency: 2ms)
+2025-06-01 16:50:15.554032716 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[3630ms]  (latency: 2ms)
+2025-06-01 16:50:15.572507357 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[3740ms]  (latency: 1ms)
+2025-06-01 16:50:15.591155635 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[3850ms]  (latency: 2ms)
+2025-06-01 16:50:15.609918664 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[3960ms]  (latency: 2ms)
+2025-06-01 16:50:15.628438355 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[4070ms]  (latency: 1ms)
+2025-06-01 16:50:15.646908552 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[4180ms]  (latency: 2ms)
+2025-06-01 16:50:15.665365542 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[4290ms]  (latency: 2ms)
+2025-06-01 16:50:15.683789457 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[4400ms]  (latency: 2ms)
+2025-06-01 16:50:15.702289881 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[4510ms]  (latency: 1ms)
+2025-06-01 16:50:15.720719096 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[4620ms]  (latency: 1ms)
+2025-06-01 16:50:15.739255087 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[4730ms]  (latency: 2ms)
+2025-06-01 16:50:15.757973927 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[4840ms]  (latency: 2ms)
+2025-06-01 16:50:15.776229505 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[4950ms]  (latency: 2ms)
+2025-06-01 16:50:15.794738371 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[5060ms]  (latency: 2ms)
+2025-06-01 16:50:15.813489225 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[5170ms]  (latency: 2ms)
+2025-06-01 16:50:15.831934932 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[5280ms]  (latency: 1ms)
+2025-06-01 16:50:15.850567013 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[5390ms]  (latency: 2ms)
+2025-06-01 16:50:15.868979490 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[5500ms]  (latency: 1ms)
+2025-06-01 16:50:15.887653505 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[5610ms]  (latency: 2ms)
+2025-06-01 16:50:15.906202668 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[5720ms]  (latency: 2ms)
+2025-06-01 16:50:15.924660605 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[5830ms]  (latency: 2ms)
+2025-06-01 16:50:15.943337571 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[5940ms]  (latency: 2ms)
+2025-06-01 16:50:15.962129949 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[6050ms]  (latency: 2ms)
+2025-06-01 16:50:15.980859015 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[6160ms]  (latency: 2ms)
+2025-06-01 16:50:15.999728359 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[6270ms]  (latency: 2ms)
+2025-06-01 16:50:16.018639751 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[6380ms]  (latency: 2ms)
+2025-06-01 16:50:16.037343674 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[6490ms]  (latency: 2ms)
+2025-06-01 16:50:16.056479712 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[6600ms]  (latency: 2ms)
+2025-06-01 16:50:16.075347486 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[6710ms]  (latency: 2ms)
+2025-06-01 16:50:16.094095068 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[6820ms]  (latency: 2ms)
+2025-06-01 16:50:16.112972948 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[6930ms]  (latency: 2ms)
+2025-06-01 16:50:16.131909714 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[7040ms]  (latency: 2ms)
+2025-06-01 16:50:16.150915684 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[7150ms]  (latency: 2ms)
+2025-06-01 16:50:16.169743807 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[7260ms]  (latency: 1ms)
+2025-06-01 16:50:16.188354970 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[7370ms]  (latency: 2ms)
+2025-06-01 16:50:16.207155297 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[7480ms]  (latency: 2ms)
+2025-06-01 16:50:16.225687290 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[7590ms]  (latency: 2ms)
+2025-06-01 16:50:16.244319101 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[7700ms]  (latency: 2ms)
+2025-06-01 16:50:16.263201970 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[7810ms]  (latency: 2ms)
+2025-06-01 16:50:16.282001866 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[7920ms]  (latency: 1ms)
+2025-06-01 16:50:16.300930506 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[8030ms]  (latency: 2ms)
+2025-06-01 16:50:16.320604412 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[8140ms]  (latency: 2ms)
+2025-06-01 16:50:16.339379828 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[8250ms]  (latency: 2ms)
+2025-06-01 16:50:16.358105771 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[8360ms]  (latency: 2ms)
+2025-06-01 16:50:16.376723708 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[8470ms]  (latency: 2ms)
+2025-06-01 16:50:16.395384135 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[8580ms]  (latency: 2ms)
+2025-06-01 16:50:16.414393953 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 20 by 70
+
+[8690ms]  (latency: 2ms)
+
+=== TRANSCRIPTION COMPLETE ===
+Full transcript:                                                                                 
+Results saved to: test_results/final_v2.txt
+
+✅ SUCCESS: No repeated 'sh' tokens detected!
+The cache-aware model appears to have fixed the issue.

@@ -1,0 +1,3 @@
+samples: 139680
+sample_rate: 16000
+duration_seconds: 8.730

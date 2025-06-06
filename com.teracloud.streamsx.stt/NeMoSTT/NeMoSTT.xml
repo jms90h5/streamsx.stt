@@ -24,9 +24,9 @@ nvidia/stt_en_fastconformer_hybrid_large_streaming_multi model.
       </customLiterals>
       <libraryDependencies>
         <library>
-          <cmn:description>NeMo STT implementation library</cmn:description>
+          <cmn:description>NeMo CTC implementation library</cmn:description>
           <cmn:managedLibrary>
-            <cmn:lib>nemo_stt</cmn:lib>
+            <cmn:lib>nemo_ctc_interface</cmn:lib>
             <cmn:libPath>../../impl/lib</cmn:libPath>
             <cmn:includePath>../../impl/include</cmn:includePath>
           </cmn:managedLibrary>

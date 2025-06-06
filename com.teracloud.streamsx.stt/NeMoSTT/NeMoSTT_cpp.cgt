@@ -18,7 +18,7 @@
 
 <%
     my $modelPathValue = $modelPath->getValueAt(0)->getCppExpression();
-    my $audioFormatValue = $audioFormat ? $audioFormat->getValueAt(0)->getSPLExpression() : '"mono16k"';
+    my $audioFormatValue = $audioFormat ? '"' . $audioFormat->getValueAt(0)->getSPLExpression() . '"' : '"mono16k"';
     my $chunkDurationValue = $chunkDurationMs ? $chunkDurationMs->getValueAt(0)->getCppExpression() : "5000";
     my $minSpeechDurationValue = $minSpeechDurationMs ? $minSpeechDurationMs->getValueAt(0)->getCppExpression() : "500";
 %>
@@ -27,6 +27,7 @@ MY_OPERATOR::MY_OPERATOR()
     : sampleRate_(16000),
       channels_(1),
       modelPath_(<%=$modelPathValue%>),
+      tokensPath_(),
       chunkDurationMs_(<%=$chunkDurationValue%>),
       minSpeechDurationMs_(<%=$minSpeechDurationValue%>)
 {
@@ -60,15 +61,22 @@ void MY_OPERATOR::allPortsReady()
 {
     SPLAPPTRC(L_DEBUG, "NeMoSTT allPortsReady", SPL_OPER_DBG);
     
-    // Initialize NeMo STT
-    nemoSTT_.reset(new com::teracloud::streams::stt::NeMoSTTWrapper());
+    // Derive tokens path from model path
+    std::string modelDir = modelPath_;
+    size_t lastSlash = modelDir.find_last_of("/\\");
+    if (lastSlash != std::string::npos) {
+        modelDir = modelDir.substr(0, lastSlash);
+        tokensPath_ = modelDir + "/tokens.txt";
+    } else {
+        tokensPath_ = "tokens.txt";
+    }
     
-    nemoSTT_->setChunkDurationMs(chunkDurationMs_);
-    nemoSTT_->setMinSpeechDurationMs(minSpeechDurationMs_);
+    // Initialize NeMo CTC implementation
+    nemoSTT_ = createNeMoCTCImpl();
     
-    if (!nemoSTT_->initialize(modelPath_)) {
-        SPLAPPTRC(L_ERROR, "Failed to initialize NeMo model: " << modelPath_, SPL_OPER_DBG);
-        throw std::runtime_error("Failed to initialize NeMo model");
+    if (!nemoSTT_->initialize(modelPath_, tokensPath_)) {
+        SPLAPPTRC(L_ERROR, "Failed to initialize NeMo CTC model: " << modelPath_, SPL_OPER_DBG);
+        throw std::runtime_error("Failed to initialize NeMo CTC model");
     }
     
     SPLAPPTRC(L_INFO, "NeMo model initialized successfully", SPL_OPER_DBG);
@@ -86,85 +94,39 @@ void MY_OPERATOR::process(Tuple const & tuple, uint32_t port)
     const IPort0Type & ituple = static_cast<const IPort0Type &>(tuple);
     
     // Extract audio data from input tuple
-    // Assuming the tuple has a blob attribute containing audio data
-    <%  
-        # Find the first blob attribute in the input tuple
-        my @attributes = $inputPort->getAttributes();
-        my $blobAttr = undef;
-        foreach my $attr (@attributes) {
-            if ($attr->getSPLType() eq "blob") {
-                $blobAttr = $attr;
-                last;
-            }
-        }
-        
-        if ($blobAttr) {
-            my $attrName = $blobAttr->getName();
-    %>
-    const SPL::blob& audioBlob = ituple.get_<%=$attrName%>();
+    // Expecting tuple with audioChunk (blob) and audioTimestamp (uint64) attributes
+    const SPL::blob& audioBlob = ituple.get_audioChunk();
     const void* audioData = audioBlob.getData();
     uint64_t audioSize = audioBlob.getSize();
     
-    // Process audio data (assuming 16-bit samples)
-    processAudioData(audioData, audioSize, 16);
+    // Convert 16-bit audio to float samples
+    const int16_t* samples = static_cast<const int16_t*>(audioData);
+    size_t numSamples = audioSize / sizeof(int16_t);
     
-    // Check for available transcription
-    std::string transcription;
-    if (nemoSTT_->getTranscription(transcription)) {
+    std::vector<float> floatSamples(numSamples);
+    for (size_t i = 0; i < numSamples; ++i) {
+        floatSamples[i] = static_cast<float>(samples[i]) / 32768.0f;
+    }
+    
+    // Transcribe audio chunk
+    std::string transcription = nemoSTT_->transcribe(floatSamples);
+    
+    // Output transcription if not empty
+    if (!transcription.empty()) {
         outputTranscription(transcription);
     }
-    <%
-        } else {
-    %>
-    // No blob attribute found in input tuple
-    SPLAPPTRC(L_ERROR, "No blob attribute found in input tuple", SPL_OPER_DBG);
-    <%
-        }
-    %>
 }
 
 void MY_OPERATOR::process(Punctuation const & punct, uint32_t port)
 {
     SPLAPPTRC(L_TRACE, "NeMoSTT process punctuation: " << punct, SPL_OPER_DBG);
     
-    // On window marker, flush any remaining audio and get final transcription
-    if (punct == Punctuation::WindowMarker) {
-        std::string transcription;
-        if (nemoSTT_->getTranscription(transcription)) {
-            outputTranscription(transcription);
-        }
-        
-        // Reset for next window
-        nemoSTT_->reset();
-    }
+    // Forward punctuation processing (CTC model handles each chunk independently)
     
     // Forward punctuation
     submit(punct, 0);
 }
 
-void MY_OPERATOR::processAudioData(const void* data, size_t bytes, int bitsPerSample)
-{
-    size_t samples = bytes / (bitsPerSample / 8);
-    
-    // Convert to float samples
-    audioBuffer_.clear();
-    audioBuffer_.reserve(samples);
-    
-    if (bitsPerSample == 16) {
-        const int16_t* samples16 = static_cast<const int16_t*>(data);
-        for (size_t i = 0; i < samples; i++) {
-            audioBuffer_.push_back(samples16[i] / 32768.0f);
-        }
-    } else if (bitsPerSample == 8) {
-        const uint8_t* samples8 = static_cast<const uint8_t*>(data);
-        for (size_t i = 0; i < samples; i++) {
-            audioBuffer_.push_back((samples8[i] - 128) / 128.0f);
-        }
-    }
-    
-    // Process audio chunk
-    nemoSTT_->processAudioChunk(audioBuffer_.data(), audioBuffer_.size(), sampleRate_);
-}
 
 void MY_OPERATOR::outputTranscription(const std::string& text)
 {
@@ -175,19 +137,8 @@ void MY_OPERATOR::outputTranscription(const std::string& text)
     // Create output tuple
     OPort0Type otuple;
     
-    <%
-        # Set transcription text in the first rstring attribute
-        my @outAttributes = $outputPort->getAttributes();
-        foreach my $attr (@outAttributes) {
-            if ($attr->getSPLType() eq "rstring") {
-                my $attrName = $attr->getName();
-    %>
-    otuple.set_<%=$attrName%>(text);
-    <%
-                last;
-            }
-        }
-    %>
+    // Set transcription attribute (expecting rstring transcription)
+    otuple.set_transcription(text);
     
     // Submit output tuple
     submit(otuple, 0);

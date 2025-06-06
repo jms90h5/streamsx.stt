@@ -1,0 +1,9 @@
+Feature Extraction Analysis
+===========================
+
+NeMo shape: (1, 80, 874)
+C++ shape: (1, 80, 871)
+NeMo range: [-16.6162, -0.3776]
+C++ range: [-23.0259, 0.4375]
+Mean difference: 0.9541
+Correlation: 0.0140

@@ -1,0 +1,8 @@
+n_fft: 512
+hop_length: 160
+win_length: 400
+n_mels: 80
+fmin: 0.0
+fmax: 8000.0
+feature_frames: 874
+feature_dims: 80

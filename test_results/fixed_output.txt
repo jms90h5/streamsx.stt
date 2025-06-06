@@ -1,0 +1,82 @@
+=== NeMo Cache-Aware FastConformer-Hybrid Test ===
+Testing solution for 'sh sh sh' repetition issue
+Loaded audio: test_data/audio/librispeech-1995-1837-0001.raw
+  Samples: 139680
+  Duration: 8.73 seconds
+
+Initializing NeMo dual model...
+Initializing NeMo FastConformer-Hybrid dual model...
+Encoder model: models/nemo_fresh_export/encoder-fastconformer_cache_final.onnx
+Decoder model: models/nemo_fresh_export/decoder_joint-fastconformer_cache_final.onnx
+Chunk frames: 160
+Attention context: [70,0]
+Cache enabled: yes
+Loading encoder model...
+Loading decoder model...
+Encoder loaded: 5 inputs, 5 outputs
+Decoder loaded: 5 inputs, 4 outputs
+=== Encoder Model Info ===
+Encoder Input 0: audio_signal shape: [-1,80,-1]
+Encoder Input 1: length shape: [-1]
+Encoder Input 2: cache_last_channel shape: [-1,17,-1,512]
+Encoder Input 3: cache_last_time shape: [-1,17,512,-1]
+Encoder Input 4: cache_last_channel_len shape: [-1]
+=== Decoder Model Info ===
+Decoder Input 0: encoder_outputs shape: [-1,512,-1]
+Decoder Input 1: targets shape: [-1,-1]
+Decoder Input 2: target_length shape: [-1]
+Decoder Input 3: input_states_1 shape: [1,-1,640]
+Decoder Input 4: input_states_2 shape: [1,-1,640]
+Cache tensors initialized:
+  Channel cache size: 165376 elements
+  Time cache size: 774656 elements
+  Length cache size: 17 elements
+Decoder state initialized (will be sized on first inference)
+NeMo Cache-Aware Conformer initialized successfully
+
+Initializing feature extractor...
+ImprovedFbank initialized:
+  Sample rate: 16000 Hz
+  Frame length: 400 samples (25ms)
+  Frame shift: 160 samples (10ms)
+  Mel bins: 80
+  FFT size: 512
+
+=== Processing Audio ===
+2025-06-01 15:47:20.993323471 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 38 by 89
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 38 by 89
+
+[0ms]  (latency: 10ms)
+2025-06-01 15:47:21.292371858 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 38 by 89
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 38 by 89
+
+[1600ms]  (latency: 9ms)
+2025-06-01 15:47:21.588870494 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 38 by 89
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 38 by 89
+
+[3200ms]  (latency: 10ms)
+2025-06-01 15:47:21.886633988 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 38 by 89
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 38 by 89
+
+[4800ms]  (latency: 9ms)
+2025-06-01 15:47:22.183966086 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 38 by 89
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 38 by 89
+
+[6400ms]  (latency: 9ms)
+2025-06-01 15:47:22.481251458 [E:onnxruntime:, sequential_executor.cc:514 ExecuteKernel] Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 38 by 89
+
+Error in processChunk: Non-zero status code returned while running Where node. Name:'/layers.0/self_attn/Where' Status Message: /onnxruntime_src/onnxruntime/core/providers/cpu/math/element_wise_ops.h:540 void onnxruntime::BroadcastIterator::Init(ptrdiff_t, ptrdiff_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 38 by 89
+
+[8000ms]  (latency: 10ms)
+
+=== TRANSCRIPTION COMPLETE ===
+Full transcript:       
+Results saved to: test_results/nemo_fixed_cache.txt
+
+✅ SUCCESS: No repeated 'sh' tokens detected!
+The cache-aware model appears to have fixed the issue.

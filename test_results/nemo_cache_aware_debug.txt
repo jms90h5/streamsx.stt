@@ -1,0 +1,8 @@
+[0ms] 
+[1600ms] 
+[3200ms] 
+[4800ms] 
+[6400ms] 
+[8000ms] 
+
+Full transcript:       

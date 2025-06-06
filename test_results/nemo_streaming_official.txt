@@ -1,0 +1,5 @@
+NeMo Streaming Result:
+Model: nvidia/stt_en_fastconformer_hybrid_large_streaming_multi
+Chunk size: 1600ms
+Configuration: 40 encoder frames
+Transcription: it was the first great sorrow sorrow of his life it was not not so much the loss of the cotton cotton itself but the fantasy the hopes the dreams built built round it

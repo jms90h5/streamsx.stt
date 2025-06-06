@@ -14,67 +14,130 @@ Successfully implemented real-time speech recognition with:
   - ✅ **BasicNeMoDemo**: Perfect English transcriptions
   - ✅ **NeMoCTCRealtime**: Real-time processing with 10.24x speedup + CSV metrics
   - ✅ **NeMoFileTranscription**: Batch processing with transcript and analysis files
+- ✅ **BOTH STREAMING MODES VERIFIED**:
+  - ✅ **1x Real-time Mode**: Respects audio timing for live streaming simulation
+  - ✅ **Full Speed Mode**: Maximum throughput for batch processing
 
 ## Quick Start
 
+**New to the toolkit? See [QUICKSTART.md](QUICKSTART.md) for a 5-minute setup guide!**
+
 ### Prerequisites
 - IBM Streams 7.2.0+
-- ONNX Runtime 1.16.3 (included)
+- C++14 compiler (g++ 7.3+)
 - Python 3.9+ (for model export only)
+- ~4GB disk space for models and dependencies
 
-### 1. Set Up Environment
+### Step 1: Set Up Environment
 ```bash
+# Set Streams installation path
 export STREAMS_INSTALL=/path/to/streams/7.2.0.0
 source $STREAMS_INSTALL/bin/streamsprofile.sh
+
+# Clone or navigate to toolkit directory
+cd /path/to/com.teracloud.streamsx.stt
 ```
 
-### 2. Export NeMo Model (One-time Setup)
+### Step 2: Export NeMo Model (One-time Setup)
 ```bash
+# Install Python dependencies
+pip install -r requirements.txt
+
 # Download and export model to ONNX format
 python export_nemo_ctc_simple.py
 # Creates: models/fastconformer_ctc_export/model.onnx (459MB)
+# Creates: models/fastconformer_ctc_export/tokens.txt (vocabulary)
 ```
 
-### 3. Build Toolkit
+### Step 3: Build Toolkit
 ```bash
-# Build interface library
+# Build interface library (required for ONNX Runtime integration)
 cd impl
 make -f Makefile.nemo_interface
-
-# Generate toolkit
 cd ..
+
+# Generate SPL toolkit
 spl-make-toolkit -i . --no-mixed-mode -m
+
+# Verify toolkit build
+ls -la toolkit.xml  # Should see toolkit.xml file
 ```
 
-### 4. Run Sample Applications
+### Step 4: Build Sample Applications
 ```bash
 cd samples
 
-# Build all samples
-make BasicNeMoDemo       # Simple demonstration
-make NeMoCTCRealtime     # Real-time metrics
-make NeMoFileTranscription  # Batch processing
+# Build all samples at once
+make all
 
-# Run BasicNeMoDemo
+# Or build individually
+make BasicNeMoDemo          # Simple demonstration
+make NeMoCTCRealtime        # Real-time streaming metrics
+make NeMoFileTranscription  # Batch file processing
+```
+
+### Step 5: Run Sample Applications
+
+**Set library paths (required for all samples):**
+```bash
+export LD_LIBRARY_PATH=/path/to/com.teracloud.streamsx.stt/deps/onnxruntime/lib:/path/to/com.teracloud.streamsx.stt/deps/kaldi-native-fbank/lib:$LD_LIBRARY_PATH
+```
+
+#### BasicNeMoDemo - Simple Transcription
+```bash
 cd output/BasicNeMoDemo
-./bin/standalone
 
-# Run with real-time streaming metrics
-cd ../NeMoCTCRealtime
-./bin/standalone -P realtimePlayback=true -P chunkSizeMs=512
+# Run in full speed mode (default)
+./bin/standalone --data-directory=data
 
-# Run batch file processing
-cd ../NeMoFileTranscription  
-./bin/standalone -P audioFile=/path/to/audio.wav
+# Run in 1x real-time mode (simulates live streaming)
+./bin/standalone --data-directory=data realtimePlayback="true"
+```
+
+#### NeMoCTCRealtime - Performance Metrics
+```bash
+cd output/NeMoCTCRealtime
+
+# Run with 1x real-time playback (default chunk size 512ms)
+./bin/standalone --data-directory=data realtimePlayback="true" chunkSizeMs="512"
+
+# Run at full speed with custom chunk size
+./bin/standalone --data-directory=data realtimePlayback="false" chunkSizeMs="256"
+```
+
+#### NeMoFileTranscription - Batch Processing
+```bash
+cd output/NeMoFileTranscription
+
+# Process default test file at full speed
+./bin/standalone --data-directory=data realtimePlayback="false"
+
+# Process custom audio file
+./bin/standalone --data-directory=data audioFile="/path/to/audio.wav" realtimePlayback="false"
 ```
 
 **Expected Output**:
 ```
-BasicNeMoDemo Transcription: we are expanding together shoulder to shoulder all working for one common good...
+BasicNeMoDemo Transcription: it was the first great sorrow of his life it was not so much the loss of the cotton itself but the fantasy the hopes the dreams built around it
 
-[NeMoCTCRealtime] Processing: 45.2ms, Audio: 512ms, Speedup: 11.3x real-time
+[NeMoCTCRealtime] Processing: 50ms, Audio: 512ms, Speedup: 10.24x real-time
+
 [NeMoFileTranscription] Audio duration: 120.0s, Processing: 8.5s, Speedup: 14.1x
 ```
+
+## Streaming Modes
+
+### 1x Real-time Mode (`realtimePlayback=true`)
+- Simulates live audio streaming by respecting real-time timing
+- Processes audio chunks at the rate they would arrive in a live stream
+- Ideal for testing real-time streaming applications
+- **Performance**: Wall time ≈ Audio duration
+
+### Full Speed Mode (`realtimePlayback=false`)
+- Processes audio as fast as possible without timing constraints
+- Achieves maximum throughput for batch processing
+- Ideal for transcribing pre-recorded files
+- **Performance**: 8-14x faster than real-time
 
 ## Key Features
 
@@ -83,6 +146,7 @@ BasicNeMoDemo Transcription: we are expanding together shoulder to shoulder all 
 - **Interface Library Pattern**: Solves ONNX header compatibility issues
 - **Kaldi Feature Extraction**: Robust audio preprocessing
 - **Pure C++ Performance**: No Python dependencies at runtime
+- **Dual Processing Modes**: Real-time streaming or full speed batch
 
 ### 📁 Architecture
 ```
@@ -176,41 +240,71 @@ com.teracloud.streamsx.stt/
 ## Building from Source
 
 ### Dependencies
-- IBM Streams development environment
+- IBM Streams 7.2.0+ development environment
 - C++14 compiler (g++ 7.3+)
-- Python with NeMo ASR toolkit (for model export)
+- Python 3.9+ with pip
 - ONNX Runtime 1.16.3 (included in deps/)
+- Kaldi-native-fbank (included in deps/)
 
-### Build Steps
+### Complete Build Process
 ```bash
-# 1. Export model (if not done)
+# 1. Install Python dependencies
+pip install -r requirements.txt
+
+# 2. Export NeMo model to ONNX (one-time setup)
 python export_nemo_ctc_simple.py
+# Verify: ls -la models/fastconformer_ctc_export/
 
-# 2. Build implementation library
-cd impl && make -f Makefile.nemo_interface
+# 3. Build C++ interface library
+cd impl
+make -f Makefile.nemo_interface
+# Verify: ls -la lib/libnemo_ctc_interface.so
+cd ..
 
-# 3. Generate toolkit
-cd .. && spl-make-toolkit -i . --no-mixed-mode -m
+# 4. Generate SPL toolkit
+spl-make-toolkit -i . --no-mixed-mode -m
+# Verify: ls -la toolkit.xml
 
-# 4. Build samples
-cd samples && make all
+# 5. Build all samples
+cd samples
+make all
+# Verify: ls -la output/*/bin/standalone
+
+# 6. Set runtime library paths
+export LD_LIBRARY_PATH=$PWD/../deps/onnxruntime/lib:$PWD/../deps/kaldi-native-fbank/lib:$LD_LIBRARY_PATH
 ```
 
 ## Troubleshooting
 
 ### Common Issues
 
+**"STREAMS_JAVA_HOME is not set"**
+```bash
+source /path/to/streams/7.2.0.0/bin/streamsprofile.sh
+```
+
+**"libnemo_ctc_interface.so: cannot open shared object file"**
+```bash
+export LD_LIBRARY_PATH=/path/to/com.teracloud.streamsx.stt/deps/onnxruntime/lib:/path/to/com.teracloud.streamsx.stt/deps/kaldi-native-fbank/lib:$LD_LIBRARY_PATH
+```
+
+**"An operator was attempting to access the data directory"**
+```bash
+./bin/standalone --data-directory=data
+```
+
 **"noexcept" compilation error**
 - Ensure using interface library, not direct ONNX headers
-- Check `impl/lib/libnemo_ctc_interface.so` exists
+- Rebuild: `cd impl && make -f Makefile.nemo_interface`
 
 **Model not found**
 - Use absolute paths in SPL files
-- Verify model export completed successfully
+- Verify model export: `ls -la models/fastconformer_ctc_export/`
 
 **Poor transcription quality**
 - Ensure 16kHz, mono, 16-bit PCM audio format
 - Check audio quality and noise levels
+- Verify using correct model file
 
 ## Documentation
 

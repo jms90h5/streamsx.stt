@@ -1,0 +1,2 @@
+# Vocabulary from proven working model
+# Size: 1024 tokens

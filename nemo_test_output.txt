@@ -1,0 +1,276 @@
+=== NeMo Cache-Aware Conformer Standalone Test ===
+
+Configuration:
+  NeMo model: models/nemo_fastconformer_streaming/conformer_ctc_dynamic.onnx
+  Audio file: test_data/audio/librispeech-1995-1837-0001.raw
+  VAD enabled: yes
+  Chunk size: 160ms
+  Sample rate: 16000Hz
+
+Loading audio file...
+Loaded audio file: test_data/audio/librispeech-1995-1837-0001.raw
+  Size: 279360 bytes
+  Samples: 139680
+  Duration: 8.73 seconds
+
+Initializing NeMo pipeline...
+Silero VAD not available, using energy-based VAD
+Info: Kaldifeat not available, falling back to simple_fbank
+Creating model of type: 4
+Using vocabulary: models/nemo_fastconformer_streaming/tokenizer.txt
+Initializing NeMo Cache-Aware Conformer model...
+Model path: models/nemo_fastconformer_streaming/conformer_ctc_dynamic.onnx
+Chunk frames: 160
+Attention context: [70,0]
+Model loaded: 1 inputs, 1 outputs
+Input 0: audio_signal shape: [-1,-1,80]
+Cache tensors initialized:
+  Channel cache size: 393216 elements
+  Time cache size: 393216 elements
+Loaded vocabulary with 128 tokens from models/nemo_fastconformer_streaming/tokenizer.txt
+First 10 tokens: [0]=[PAD] [1]=[UNK] [2]=[CLS] [3]=[SEP] [4]=[MASK] [5]=' [6]=a [7]=b [8]=c [9]=d 
+NeMo Cache-Aware Conformer initialized successfully
+STTPipeline initialized successfully
+  VAD: enabled
+  Feature extractor: kaldifeat
+  Model: 4
+NeMo pipeline created successfully
+NeMo pipeline initialized successfully!
+
+Processing parameters:
+  Chunk samples: 2560
+  Total chunks: 55
+
+=== Processing Audio ===
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=0, max=1.28112, avg=0.0394163
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[160ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:8ms TOTAL:8ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-5.15417, max=0.473331, avg=-0.0948843
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[320ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:6ms TOTAL:6ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-4.65005, max=0.905411, avg=-0.166852
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[480ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-2.07522, max=1.06044, avg=0.0153032
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[640ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-6.27232, max=0.817782, avg=-0.168722
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[800ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-5.56205, max=0.675677, avg=-0.0465619
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[960ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-3.68997, max=0, avg=-0.118261
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[1120ms] [SILENCE] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=0, max=0.882307, avg=0.0382564
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[1280ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=0, max=0.746263, avg=0.0218847
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[1440ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-1.81512, max=0.0703933, avg=-0.0291286
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[1600ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-2.44327, max=0.04759, avg=-0.0625973
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[1760ms] [SILENCE] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-1.04077, max=0.706653, avg=0.0115439
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[1920ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:5ms TOTAL:5ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-2.29842, max=0.330881, avg=-0.0165164
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[2080ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:5ms TOTAL:5ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-6.25961, max=0, avg=-0.258693
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[2240ms] [SILENCE] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-6.60841, max=0, avg=-0.288078
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[2400ms] [SILENCE] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-6.75892, max=0, avg=-0.290127
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[2560ms] [SILENCE] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-6.29072, max=1.00861, avg=-0.0475226
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[2720ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-1.17532, max=1.69503, avg=0.0318526
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[2880ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-5.16858, max=1.28603, avg=-0.0569847
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[3040ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-3.20848, max=1.35644, avg=-0.0507114
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[3200ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=0, max=1.42808, avg=0.0614495
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[3360ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-5.83417, max=0.495303, avg=-0.139959
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[3520ms] [SILENCE] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:5ms TOTAL:5ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-4.53772, max=0.425379, avg=-0.0473672
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[3680ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:5ms TOTAL:5ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=0, max=1.06285, avg=0.0388654
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[3840ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-2.86669, max=0.885363, avg=-0.0456474
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[4000ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-4.11496, max=0.12149, avg=-0.0866237
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[4160ms] [SILENCE] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:7ms TOTAL:7ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-5.92483, max=0, avg=-0.194525
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[4320ms] [SILENCE] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:6ms TOTAL:6ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-1.34315, max=0.519706, avg=0.000552087
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[4480ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:6ms TOTAL:6ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-6.01457, max=0.0864481, avg=-0.10709
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[4640ms] [SILENCE] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:5ms TOTAL:5ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-5.92159, max=0.0152721, avg=-0.106211
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[4800ms] [SILENCE] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-4.2735, max=1.22353, avg=-0.105542
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[4960ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-0.388328, max=1.13243, avg=0.0200038
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[5120ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:5ms TOTAL:5ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-6.43214, max=0, avg=-0.237865
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[5280ms] [SILENCE] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-5.82056, max=0.280849, avg=-0.139501
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[5440ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-5.57908, max=1.12997, avg=-0.157816
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[5600ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-3.74717, max=1.47039, avg=0.034167
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[5760ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:5ms TOTAL:5ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-3.91701, max=0, avg=-0.0868017
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[5920ms] [SILENCE] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-4.55774, max=0.0706803, avg=-0.0613646
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[6080ms] [SILENCE] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-6.17193, max=0, avg=-0.197885
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[6240ms] [SILENCE] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:5ms TOTAL:5ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-1.07128, max=0.769958, avg=-0.00169313
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[6560ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-0.798495, max=1.15816, avg=0.0198809
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[6720ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-6.0009, max=0, avg=-0.181102
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[6880ms] [SILENCE] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-6.31281, max=0, avg=-0.241043
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[7040ms] [SILENCE] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-4.52868, max=0.323787, avg=-0.0773725
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[7200ms] [SILENCE] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=0, max=1.65393, avg=0.0625557
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[7360ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-0.868412, max=0.796286, avg=-0.00102362
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[7520ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-2.42441, max=0.639241, avg=-0.0701214
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[7680ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-4.84165, max=0.802328, avg=-0.0740849
+Raw CTC tokens: 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) 95(-2.91337) ...
+[7840ms] [SPEECH] sh (conf: 85%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 50/55 (90.9%)
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-0.3, max=1.0, avg=0.0
+Raw CTC tokens: 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) ...
+[8000ms] [SPEECH] sh (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=0.0, max=0.9, avg=0.0
+Raw CTC tokens: 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) ...
+[8160ms] [SPEECH] sh (conf: 85.0%) [VAD:0ms FE:0ms MODEL:5ms TOTAL:5ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-2.3, max=0.4, avg=-0.0
+Raw CTC tokens: 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) ...
+[8320ms] [SPEECH] sh (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 14 frames (padding to 160 for model compatibility)
+Feature stats: min=-5.9, max=0.0, avg=-0.2
+Raw CTC tokens: 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) ...
+[8480ms] [SILENCE] sh (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Processing chunk: 7 frames (padding to 160 for model compatibility)
+Feature stats: min=-6.5, max=0.0, avg=-0.1
+Raw CTC tokens: 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) 95(-2.9) ...
+[8640ms] [SILENCE] sh (conf: 85.0%) [VAD:0ms FE:0ms MODEL:4ms TOTAL:4ms]
+Progress: 55/55 (100.0%)
+
+=== Performance Summary ===
+Total processing time: 267ms
+Audio duration: 8730.0ms
+Real-time factor: 0.0
+Speech chunks: 34 (61.8%)
+Silence chunks: 21 (38.2%)
+Average latency: 4ms
+Latency range: 0-8ms
+
+Pipeline Statistics:
+  Total chunks processed: 55
+  Average VAD latency: 0.0ms
+  Average feature latency: 0.0ms
+  Average model latency: 4.3ms
+  Real-time factor: 0.0
+
+=== Test Completed Successfully ===

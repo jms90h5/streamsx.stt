@@ -4,7 +4,7 @@
 
 This guide documents the successful integration of NVIDIA NeMo FastConformer speech recognition models with IBM Streams. The key achievement was resolving ONNX Runtime header compatibility issues through an interface library pattern, enabling native C++ operators for real-time speech-to-text processing.
 
-**Key Success**: The `BasicNeMoDemo` sample application successfully transcribes speech using the NeMo FastConformer CTC model exported to ONNX format.
+**Key Success**: BasicNeMoDemo sample now produces perfect English transcriptions: "it was the first great sorrow of his life it was not so much the loss of the cotton itself but the fantasy the hopes the dreams built around it". NeMoCTCRealtime and NeMoFileTranscription need the same fix applied. The interface library pattern enables clean SPL integration without ONNX header conflicts.
 
 ## Technical Solution Overview
 
@@ -199,11 +199,13 @@ cd output/BasicNeMoDemo
 ## Quick Reference
 
 ### Key Files
-- `models/fastconformer_ctc_export/model.onnx` - CTC model
-- `models/fastconformer_ctc_export/tokens.txt` - Vocabulary
+- `models/fastconformer_ctc_export/model.onnx` - CTC model (or test_asr_model.onnx)
+- `models/fastconformer_ctc_export/tokens.txt` - Vocabulary (automatically detected)
 - `impl/include/NeMoCTCInterface.hpp` - Interface header
 - `impl/lib/libnemo_ctc_interface.so` - Implementation library
-- `samples/BasicNeMoDemo.spl` - Working example
+- `samples/BasicNeMoDemo.spl` - Simple demonstration
+- `samples/NeMoCTCRealtime.spl` - Real-time metrics
+- `samples/NeMoFileTranscription.spl` - Batch processing
 
 ### Build Commands
 ```bash
@@ -216,17 +218,23 @@ cd impl && make -f Makefile.nemo_interface
 # Build toolkit
 spl-make-toolkit -i . --no-mixed-mode -m
 
-# Build sample
-cd samples && make BasicNeMoDemo
+# Build samples
+cd samples && make BasicNeMoDemo NeMoCTCRealtime NeMoFileTranscription
 ```
 
 ### Testing
 ```bash
-# Test with provided audio
-./bin/standalone
+# Test BasicNeMoDemo
+cd output/BasicNeMoDemo && ./bin/standalone
 
-# Monitor output
-tail -f output/BasicNeMoDemo/data/BasicNeMoDemo_transcript_*.txt
+# Test real-time metrics
+cd ../NeMoCTCRealtime && ./bin/standalone -P realtimePlayback=true
+
+# Test batch processing
+cd ../NeMoFileTranscription && ./bin/standalone
+
+# Monitor outputs
+tail -f output/*/data/*transcript*.txt
 ```
 
 ## Current Capabilities

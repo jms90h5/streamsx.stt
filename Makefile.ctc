@@ -1,0 +1,48 @@
+# Makefile for NeMo CTC C++ Implementation
+
+CXX = g++
+CXXFLAGS = -std=c++17 -O2 -Wall -Wextra
+
+# ONNX Runtime paths
+ONNX_ROOT = /homes/jsharpe/teracloud/com.teracloud.streamsx.stt/deps/onnxruntime
+ONNX_INCLUDE = $(ONNX_ROOT)/include
+ONNX_LIB = $(ONNX_ROOT)/lib
+
+# Include paths
+INCLUDES = -I$(ONNX_INCLUDE) -Iimpl/include -Iimpl/src
+
+# Library paths and libraries
+LIBS = -L$(ONNX_LIB) -lonnxruntime
+
+# Source files
+SOURCES = impl/include/NeMoCTCImpl.cpp impl/src/LibrosaBasedExtractor.cpp test_nemo_ctc_cpp.cpp
+OBJECTS = $(SOURCES:.cpp=.o)
+
+# Target executable
+TARGET = test_nemo_ctc_cpp
+
+# Default target
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CXX) $(OBJECTS) -o $(TARGET) $(LIBS)
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+clean:
+	rm -f $(OBJECTS) $(TARGET)
+
+test: $(TARGET)
+	LD_LIBRARY_PATH=$(ONNX_LIB):$$LD_LIBRARY_PATH ./$(TARGET)
+
+.PHONY: all clean test
+
+# Build info
+info:
+	@echo "CXX: $(CXX)"
+	@echo "CXXFLAGS: $(CXXFLAGS)" 
+	@echo "INCLUDES: $(INCLUDES)"
+	@echo "LIBS: $(LIBS)"
+	@echo "SOURCES: $(SOURCES)"
+	@echo "TARGET: $(TARGET)"
