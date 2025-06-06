@@ -45,3 +45,4 @@ models/sherpa_onnx_paraformer/
 
 # VAD models (download separately)
 models/silero_vad/
+deps/kaldi-native-fbank-src/
