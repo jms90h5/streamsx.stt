@@ -1,1 +1,0 @@
--I /homes/jsharpe/teracloud/com.teracloud.streamsx.stt/impl/include -I /homes/jsharpe/teracloud/com.teracloud.streamsx.stt/deps/onnxruntime/include -I /homes/jsharpe/teracloud/com.teracloud.streamsx.stt/deps/kaldi-native-fbank/include 

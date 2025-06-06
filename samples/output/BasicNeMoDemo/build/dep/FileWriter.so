@@ -1,4 +1,0 @@
-	@$(CXX_LN) $(SPL_CXXFLAGS) -o bin/FileWriter.so -fPIC -shared $(SOFileWriter) -lstreams-stdtk-runtime $(SPL_LDFLAGS)\
-	    build/operator/FileWriter.o \
-	    build/type/BuoCzre0fg5iJdQnrwapkCyjYEMMfTagKrJ53r_0jmfdVfmhf4hwant6OIuyi_14dk4y_0FAB2rdBfcbFQiN6Jd_0An.o \
-	    build/type/BkuXToNx2yM5B7AXTZjTgjOLzXMlOCn1pQWayey0EwsqXG1SqvxIw28l3vJN_0vo7wI_0qsqY0D9dJBd8Uot8ZGCL.o 
