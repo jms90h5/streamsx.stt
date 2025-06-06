@@ -2,7 +2,7 @@
 
 A production-ready speech-to-text toolkit for IBM Streams using NVIDIA NeMo FastConformer models with native C++ implementation.
 
-## Status: FULLY WORKING ✅ (June 5, 2025)
+## Status: FULLY WORKING ✅ (June 6, 2025)
 
 Successfully implemented real-time speech recognition with:
 - ✅ **NVIDIA NeMo FastConformer** CTC model (114M parameters)
@@ -12,8 +12,8 @@ Successfully implemented real-time speech recognition with:
 - ✅ **Interface library pattern** solving ONNX header compatibility
 - ✅ **ALL THREE SAMPLES WORKING PERFECTLY**:
   - ✅ **BasicNeMoDemo**: Perfect English transcriptions
-  - ✅ **NeMoCTCRealtime**: Real-time processing with 10.24x speedup
-  - ✅ **NeMoFileTranscription**: Batch processing with file analysis
+  - ✅ **NeMoCTCRealtime**: Real-time processing with 10.24x speedup + CSV metrics
+  - ✅ **NeMoFileTranscription**: Batch processing with transcript and analysis files
 
 ## Quick Start
 
@@ -123,13 +123,13 @@ Reads audio files and streams chunks for processing.
 Simple demonstration of speech recognition on audio files.
 **Status**: Produces perfect English transcriptions - "it was the first great sorrow of his life..."
 
-#### 2. NeMoCTCRealtime 🔄 NEEDS UPDATE
+#### 2. NeMoCTCRealtime ✅ WORKING
 Real-time streaming with performance metrics and configurable chunk sizes.
-**Status**: Needs same fix as BasicNeMoDemo to use working feature approach
+**Status**: Real-time processing with 10.24x speedup, generates CSV performance metrics
 
-#### 3. NeMoFileTranscription 🔄 NEEDS UPDATE
+#### 3. NeMoFileTranscription ✅ WORKING
 Batch file processing with comprehensive analysis and statistics.
-**Status**: Needs same fix as BasicNeMoDemo to use working feature approach
+**Status**: Generates transcript files and detailed analysis CSV with performance metrics
 
 ```spl
 stream<rstring transcription> Transcription = NeMoSTT(AudioStream) {

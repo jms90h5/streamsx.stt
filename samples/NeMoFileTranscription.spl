@@ -80,35 +80,32 @@ composite NeMoFileTranscription {
                     }
                     fullTranscription += transcription + " ";
                     chunkCount++;
-                }
-                
-                onPunct NeMoOut: {
-                    if (currentPunct() == Sys.FinalMarker) {
-                        timestamp processEnd = getTimestamp();
-                        float64 processingTimeSec = diffAsSecs(processEnd, processStart);
-                        
-                        // Clean up transcription
-                        fullTranscription = spl.string::trim(fullTranscription, " \t\n");
-                        
-                        // Calculate statistics
-                        list<rstring> words = tokenize(fullTranscription, " ", false);
-                        int32 wordCount = size(words);
-                        int32 charCount = length(fullTranscription);
-                        float64 estimatedAudioDuration = (float64)chunkCount * 2.0; // Estimate based on chunk count
-                        float64 speedupFactor = estimatedAudioDuration / processingTimeSec;
-                        
-                        submit({
-                            filename = $audioFile,
-                            transcription = fullTranscription,
-                            wordCount = wordCount,
-                            charCount = charCount,
-                            audioDurationSec = estimatedAudioDuration,
-                            processingTimeSec = processingTimeSec,
-                            speedupFactor = speedupFactor,
-                            startTime = processStart,
-                            endTime = processEnd
-                        }, Analysis);
-                    }
+                    
+                    // Emit analysis for each chunk to ensure data gets written
+                    timestamp processEnd = getTimestamp();
+                    float64 processingTimeSec = diffAsSecs(processEnd, processStart);
+                    
+                    // Clean up transcription
+                    rstring cleanTranscription = spl.string::trim(fullTranscription, " \t\n");
+                    
+                    // Calculate statistics
+                    list<rstring> words = tokenize(cleanTranscription, " ", false);
+                    int32 wordCount = size(words);
+                    int32 charCount = length(cleanTranscription);
+                    float64 estimatedAudioDuration = (float64)chunkCount * 2.0; // Estimate based on chunk count
+                    float64 speedupFactor = estimatedAudioDuration / processingTimeSec;
+                    
+                    submit({
+                        filename = $audioFile,
+                        transcription = cleanTranscription,
+                        wordCount = wordCount,
+                        charCount = charCount,
+                        audioDurationSec = estimatedAudioDuration,
+                        processingTimeSec = processingTimeSec,
+                        speedupFactor = speedupFactor,
+                        startTime = processStart,
+                        endTime = processEnd
+                    }, Analysis);
                 }
         }
         
