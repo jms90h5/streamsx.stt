@@ -44,8 +44,8 @@ cd /path/to/com.teracloud.streamsx.stt
 pip install -r requirements.txt
 
 # Download and export model to ONNX format
-python export_nemo_ctc_simple.py
-# Creates: models/fastconformer_ctc_export/model.onnx (459MB)
+python export_model_ctc.py
+# Creates: models/fastconformer_ctc_export/model.onnx (438MB)
 # Creates: models/fastconformer_ctc_export/tokens.txt (vocabulary)
 ```
 
@@ -252,7 +252,7 @@ com.teracloud.streamsx.stt/
 pip install -r requirements.txt
 
 # 2. Export NeMo model to ONNX (one-time setup)
-python export_nemo_ctc_simple.py
+python export_model_ctc.py
 # Verify: ls -la models/fastconformer_ctc_export/
 
 # 3. Build C++ interface library

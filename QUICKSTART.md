@@ -26,7 +26,7 @@ source $STREAMS_INSTALL/bin/streamsprofile.sh
 ### 3. Download Model (One-time, ~5 minutes)
 ```bash
 pip install -r requirements.txt
-python export_nemo_ctc_simple.py
+python export_model_ctc.py
 ```
 
 ### 4. Build Toolkit (~2 minutes)

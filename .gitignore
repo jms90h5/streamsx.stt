@@ -33,11 +33,14 @@ Thumbs.db
 # Large model files (download separately - share via external storage)
 models/**/*.onnx
 models/**/*.model
-models/**/*.vocab
 models/**/*.nemo
 models/**/*.ckpt
 models/**/*.pt
 models/**/blobs/
+# Allow small vocabulary and config files
+!models/**/*.txt
+!models/**/*.vocab
+!models/**/*.yaml
 models/nemo_extracted/
 models/nemo_cache_aware_conformer/
 models/nemo_fastconformer_direct/
